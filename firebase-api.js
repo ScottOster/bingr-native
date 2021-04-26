@@ -2,37 +2,31 @@ import firebase from './config';
 
 const db = firebase.firestore();
 
-export const getMovie = (roomCode) => {
-  const roomRef = db.collection('HB70').doc('115');
+export const getMovie = (roomCode, filmId) => {
+  const roomRef = db.collection(roomCode).doc(filmId);
   return roomRef.get().then((doc)=>{
-    console.log(doc.data())
   })
-  // try {
-  //   const doc = await roomRef.get();
-  //   if (doc.exists) {
-  //     return doc.data()
-  //   } else {
-  //     console.log('Not here');
-  //   }
-  // } catch (err) {
-  //   console.log('Error: ', err);
-  // }
 };
 
-// export const incrementVote = (roomCode, filmId) => {
-//   const roomRef = db.document(`${roomCode}/movies`);
-//   return roomRef.get().then((doc) => {
-//     return doc.data();
-//   });
-// };
-// const roomCollectionRef = db.collection('TWUT');
-// const increment = firebase.firestore.FieldValue.increment(1);
+export const getMovieByPosition = async (roomCode, index) => {
+  const roomRef = db.collection(roomCode)
+  const snapshot = await roomRef.get()
+  if (snapshot.empty){
+    console.log('no matching documents')
+    return
+  }
+  else{
+    return (snapshot.docs[index].data())
+  }
+}
 
-// export const updateVotesCount = () => {
-//   roomCollectionRef.doc('233').update({ vote_count: increment });
-// };
-// const room = roomRef.doc('jHFSqPX1THcjpuGoeejc');
 
-// export const updateVotes = () => {
-//   room.update({ votes: 99 });
-// };
+const increment = firebase.firestore.FieldValue.increment(1);
+
+export const updateVotesCount = (roomCode, movieId) => {
+  db.collection(roomCode).doc(movieId).update({ increment_votes: increment });
+};
+
+export const updateVotesTally = (roomCode, movieId) => {
+  db.collection(roomCode).doc(movieId).update({ tally: increment });
+};
