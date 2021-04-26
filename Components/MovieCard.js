@@ -6,7 +6,7 @@ import {
   updateVotesCount
 } from '../firebase-api';
 
-const MovieCard = ({ navigation, roomCode }) => {
+export const MovieCard = ({ navigation, roomCode }) => {
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
 
@@ -61,6 +61,7 @@ const MovieCard = ({ navigation, roomCode }) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: 50
@@ -74,4 +75,3 @@ const styles = StyleSheet.create({
     height: 58
   }
 });
-export default MovieCard;

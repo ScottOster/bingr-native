@@ -11,9 +11,9 @@ export const Login = ({ navigation }) => {
         }}
       />
       <Button
-        title="MoviesList"
+        title="MovieCard"
         onPress={() => {
-          navigation.navigate('MoviesList');
+          navigation.navigate('MovieCard');
         }}
       />
       <Button

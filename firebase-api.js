@@ -1,10 +1,13 @@
 import firebase from './config';
+import { sortMoviesByVotes } from './utils/utils';
 
 const db = firebase.firestore();
 
 export const getMovie = (roomCode, filmId) => {
   const roomRef = db.collection(roomCode).doc(filmId);
-  return roomRef.get().then((doc) => {});
+  return roomRef.get().then((doc) => {
+    return doc.data();
+  });
 };
 
 export const getMovieByPosition = async (roomCode, index) => {
@@ -18,16 +21,20 @@ export const getMovieByPosition = async (roomCode, index) => {
   }
 };
 
-// export const getAllMovies = async (roomCode) => {
-//   const roomRef = db.collection(roomCode);
-//   const snapshot = await roomRef.get();
-//   if (snapshot.empty) {
-//     console.log('no matching documents');
-//     return;
-//   } else {
-//     return snapshot.docs.data();
-//   }
-// };
+export const getTopFiveMovies = async (roomCode) => {
+  const roomRef = db.collection(roomCode);
+  const snapshot = await roomRef.get();
+  if (snapshot.empty) {
+    console.log('no matching documents');
+    return;
+  } else {
+    const movies = [];
+    snapshot.forEach((doc) => {
+      movies.push(doc.data());
+    });
+    return sortMoviesByVotes(movies);
+  }
+};
 
 const increment = firebase.firestore.FieldValue.increment(1);
 
