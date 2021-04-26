@@ -5,17 +5,24 @@ export const Login = ({ navigation }) => {
   return (
     <View>
       <Button
-        title='HostGame'
+        title="HostGame"
         onPress={() => {
           navigation.navigate('HostFilter');
         }}
       />
-  <Button
-        title='MoviesList'
+      <Button
+        title="MoviesList"
         onPress={() => {
           navigation.navigate('MoviesList');
         }}
       />
+      <Button
+        title="Result"
+        onPress={() => {
+          navigation.navigate('Result');
+        }}
+      />
+
       <Text>Test hellooooooo</Text>
     </View>
   );

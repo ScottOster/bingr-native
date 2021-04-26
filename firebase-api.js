@@ -4,22 +4,30 @@ const db = firebase.firestore();
 
 export const getMovie = (roomCode, filmId) => {
   const roomRef = db.collection(roomCode).doc(filmId);
-  return roomRef.get().then((doc)=>{
-  })
+  return roomRef.get().then((doc) => {});
 };
 
 export const getMovieByPosition = async (roomCode, index) => {
-  const roomRef = db.collection(roomCode)
-  const snapshot = await roomRef.get()
-  if (snapshot.empty){
-    console.log('no matching documents')
-    return
+  const roomRef = db.collection(roomCode);
+  const snapshot = await roomRef.get();
+  if (snapshot.empty) {
+    console.log('no matching documents');
+    return;
+  } else {
+    return snapshot.docs[index].data();
   }
-  else{
-    return (snapshot.docs[index].data())
-  }
-}
+};
 
+// export const getAllMovies = async (roomCode) => {
+//   const roomRef = db.collection(roomCode);
+//   const snapshot = await roomRef.get();
+//   if (snapshot.empty) {
+//     console.log('no matching documents');
+//     return;
+//   } else {
+//     return snapshot.docs.data();
+//   }
+// };
 
 const increment = firebase.firestore.FieldValue.increment(1);
 
