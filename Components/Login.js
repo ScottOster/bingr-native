@@ -10,7 +10,12 @@ export const Login = ({ navigation }) => {
           navigation.navigate('HostFilter');
         }}
       />
-
+  <Button
+        title='MoviesList'
+        onPress={() => {
+          navigation.navigate('MoviesList');
+        }}
+      />
       <Text>Test hellooooooo</Text>
     </View>
   );
