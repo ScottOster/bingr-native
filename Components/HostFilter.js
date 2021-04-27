@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-
 import { Button, Switch, View, Text } from 'react-native';
 import { codeGenerator } from '../codeGenerator';
 import { initiateMovieList } from '../movieList';
 import { createGameRoom } from '../utils/createGameRoom';
 import { createUserRoom } from '../firebase-api';
-export const HostFilter = ({ navigation }) => {
+
+export const HostFilter = ({ navigation, route }) => {
+  const { trackName } = route.params;
   const [netflix, setIsNetflixEnabled] = useState(false);
   const [amazon, setIsAmazonEnabled] = useState(false);
   const [disney, setIsDisneyEnabled] = useState(false);
@@ -74,7 +75,7 @@ export const HostFilter = ({ navigation }) => {
 
   return (
     <View>
-      <Text>Hello Nate</Text>
+      <Text>Hello {trackName}</Text>
       <Text>What are you watching on?</Text>
       <View>
         <Switch
@@ -155,16 +156,23 @@ export const HostFilter = ({ navigation }) => {
         />
         <Text>Horror</Text>
       </View>
-      <Button
-        title="Start"
-        onPress={() => {
-          initiateMovieList(providers, genres).then((movies) => {
-            createGameRoom(roomCode, movies);
-            createUserRoom(roomCode, 'HARDCODED Scott');
-          });
-          navigation.navigate('WaitingRoom');
-        }}
-      />
+
+      {providers.length && genres.length ? (
+        <Button
+          title="Start"
+          onPress={() => {
+            initiateMovieList(providers, genres).then((movies) => {
+              const finalMovies = movies.slice(0, 20);
+              createGameRoom(roomCode, finalMovies);
+              createUserRoom(roomCode, trackName);
+              console.log('movies added to DB');
+              navigation.navigate('WaitingRoom', { roomCode, trackName });
+            });
+          }}
+        />
+      ) : (
+        <Text>Please select atleast one provider and one genre</Text>
+      )}
     </View>
   );
 };

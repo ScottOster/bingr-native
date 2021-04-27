@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
-export const MovieCard = ({ navigation, roomCode }) => {
+
+export const MovieCard = ({ navigation, route }) => {
+  const { roomCode, trackName } = route.params;
+
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
+  const [disabledBtn, setDisabledBtn] = useState(false);
 
   const incrementCounter = () => {
     console.log(counter);
     if (counter < 19) {
       setCounter((prevState) => {
         const newState = prevState;
-        //console.log(newState, 'increment');
         return newState + 1;
       });
     } else {
-      navigation.navigate('Result');
-      // TODO: Sort navigation
-      () => {};
+      navigation.navigate('Result', { roomCode, trackName, currentFilm });
     }
   };
 
   useEffect(() => {
-    const roomCode = 'OFRJ';
     getMovieByPosition(roomCode, counter).then((movie) => {
       setCurrentFilm(movie);
+      setDisabledBtn(false);
     });
   }, [counter]);
 
@@ -40,17 +41,21 @@ export const MovieCard = ({ navigation, roomCode }) => {
       />
       <Button
         title="cringr"
+        disabled={disabledBtn}
         onPress={() => {
           incrementCounter();
-          updateVotesTally('OFRJ', String(id));
+          updateVotesTally(roomCode, String(id));
+          setDisabledBtn(true);
         }}
       />
       <Button
         title="bingr"
+        disabled={disabledBtn}
         onPress={() => {
           incrementCounter();
-          updateVotesTally('OFRJ', String(id));
-          updateVotesCount('OFRJ', String(id));
+          updateVotesTally(roomCode, String(id));
+          updateVotesCount(roomCode, String(id));
+          setDisabledBtn(true);
         }}
       />
     </View>
