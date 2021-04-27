@@ -57,3 +57,16 @@ export const addUserToRoom = async (roomCode, userName) => {
     return true;
   }
 };
+
+export const getUsersByRoomCode = async (roomCode) => {
+  const snapshot = await db.collection(`${roomCode}users`).get();
+  if (snapshot.empty) {
+    console.log('no users in this collection');
+  } else {
+    const users = [];
+    snapshot.forEach((user) => {
+      users.push(user.data());
+    });
+    return users;
+  }
+};
