@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
-import { changes } from '../snapShotTest';
 export const MovieCard = ({ navigation, roomCode }) => {
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
@@ -22,7 +21,6 @@ export const MovieCard = ({ navigation, roomCode }) => {
   };
 
   useEffect(() => {
-    changes(15);
     const roomCode = 'OFRJ';
     getMovieByPosition(roomCode, counter).then((movie) => {
       setCurrentFilm(movie);
