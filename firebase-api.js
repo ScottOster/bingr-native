@@ -47,3 +47,7 @@ export const updateVotesTally = (roomCode, movieId) => {
 export const createUserRoom = (roomCode, hostName) => {
   db.collection(`${roomCode}users`).doc(hostName).set({ name: hostName });
 };
+
+export const addUserToRoom = (roomCode, userName) => {
+  db.collection(`${roomCode}users`).doc(userName).set({ name: userName });
+};
