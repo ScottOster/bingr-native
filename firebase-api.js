@@ -15,7 +15,6 @@ export const getMovieByPosition = async (roomCode, index) => {
   const snapshot = await roomRef.get();
   if (snapshot.empty) {
     console.log('no matching documents');
-    return;
   } else {
     return snapshot.docs[index].data();
   }
@@ -26,7 +25,6 @@ export const getTopFiveMovies = async (roomCode) => {
   const snapshot = await roomRef.get();
   if (snapshot.empty) {
     console.log('no matching documents');
-    return;
   } else {
     const movies = [];
     snapshot.forEach((doc) => {

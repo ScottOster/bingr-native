@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
-import {
-  updateVotesTally,
-  getMovieByPosition,
-  updateVotesCount
-} from '../firebase-api';
+import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
 
 export const MovieCard = ({ navigation, roomCode }) => {
   const [currentFilm, setCurrentFilm] = useState({});
@@ -64,14 +60,14 @@ export const MovieCard = ({ navigation, roomCode }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50
+    paddingTop: 50,
   },
   tinyLogo: {
     width: 50,
-    height: 50
+    height: 50,
   },
   logo: {
     width: 66,
-    height: 58
-  }
+    height: 58,
+  },
 });

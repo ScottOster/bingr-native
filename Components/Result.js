@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getTopFiveMovies, getMovie } from '../firebase-api';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { getTopFiveMovies, getMovie } from '../firebase-api';
 
 export const Result = () => {
   const [topFive, setTopFive] = useState([]);
@@ -30,7 +30,7 @@ export const Result = () => {
       <Image
         style={styles.tinyLogo}
         source={{
-          uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`
+          uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`,
         }}
       />
       <Text>Honourable mentions</Text>
@@ -44,16 +44,16 @@ export const Result = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50
+    paddingTop: 50,
   },
   tinyLogo: {
     width: 50,
-    height: 50
+    height: 50,
   },
   logo: {
     width: 66,
-    height: 58
-  }
+    height: 58,
+  },
 });
 
 //if one or more of the movies has full votes, randomly choose one and render as top choice

@@ -36,12 +36,12 @@ export const HostFilter = ({ navigation }) => {
     <View>
       <Text>Test host filter</Text>
       <Switch
-        className='setProviders'
+        className="setProviders"
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor='#3e3e3e'
+        ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
-        value='8'
+        value="8"
       />
     </View>
   );

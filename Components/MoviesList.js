@@ -6,7 +6,7 @@ export const MoviesList = ({ navigation, roomCode }) => {
   return (
     <View>
       <Text>Test MovieList</Text>
-      <MovieCard roomCode = {roomCode}/>
+      <MovieCard roomCode={roomCode} />
     </View>
   );
 };
