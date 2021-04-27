@@ -12,3 +12,4 @@ config.js
 api-key.js
 # macOS
 .DS_Store
+firebase-config.js
