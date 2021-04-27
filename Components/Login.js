@@ -8,7 +8,7 @@ export const Login = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: null
+      headerLeft: null,
     });
   });
 
@@ -19,8 +19,7 @@ export const Login = ({ navigation }) => {
         <TextInput
           onChangeText={setTrackName}
           value={trackName}
-          placeholder={'Enter name'}
-        ></TextInput>
+          placeholder={'Enter name'}></TextInput>
         <Button
           title="Host Game"
           onPress={() => {
@@ -30,12 +29,8 @@ export const Login = ({ navigation }) => {
         <TextInput
           onChangeText={() => {}}
           value={trackName}
-          placeholder={'Enter name as guest'}
-        ></TextInput>
-        <TextInput
-          onChangeText={() => {}}
-          placeholder={'Enter room-code'}
-        ></TextInput>
+          placeholder={'Enter name as guest'}></TextInput>
+        <TextInput onChangeText={() => {}} placeholder={'Enter room-code'}></TextInput>
         <Button
           title="Join game"
           onPress={() => {
@@ -56,10 +51,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 10,
     borderRadius: 10,
-    height: 50
+    height: 50,
   },
 
   body: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
