@@ -25,11 +25,7 @@ export const Login = ({ navigation }) => {
           onChangeText={() => {}}
           value={trackName}
           placeholder={'Enter name as guest'}></TextInput>
-        <TextInput
-          onChangeText={() => {
-           
-          }}
-          placeholder={'Enter room-code'}></TextInput>
+        <TextInput onChangeText={() => {}} placeholder={'Enter room-code'}></TextInput>
         <Button
           title="Join game"
           onPress={() => {
