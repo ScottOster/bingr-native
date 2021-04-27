@@ -1,57 +1,69 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
-import logo from '../logo.png'
+import logo from '../logo.png';
 import { LinearGradient } from 'expo-linear-gradient';
 
-
-export const Login = ({ navigation, hostName}, setCode) => {
-const [name, setName] = useState('')
+export const Login = ({ navigation, hostName }, setCode) => {
+  const [name, setName] = useState('');
 
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
-    <View style={styles.loginPage}>
-      <Image source={logo} style={{ width: 50, height: 50 }} />
-      <TextInput onChangeText={(e)=> {
-        console.log(name);
-        setName(e)
-       
-        }} value={hostName} placeholder={"Enter name"}></TextInput>
-      <Button
-        title='Host Game'
-        onPress={() => {
-          
-          navigation.navigate('HostFilter');
-        }}
-      />
-  <TextInput onChangeText={()=> {}} value={hostName} placeholder={"Enter name as guest"}></TextInput>
-  <TextInput onChangeText={()=> {setCode}}  placeholder={"Enter room-code"}></TextInput>
-  <Button
-        title='Join game'
-        onPress={() => {
-          navigation.navigate('HostFilter');
-        }}
-      />
-      
-    </View>
+      <View style={styles.loginPage}>
+        <Image source={logo} style={{ width: 50, height: 50 }} />
+        <TextInput
+          onChangeText={(e) => {
+            setName(e);
+          }}
+          value={hostName}
+          placeholder={'Enter name'}
+        ></TextInput>
+        <Button
+          title='Host Game'
+          onPress={() => {
+            navigation.navigate('HostFilter');
+          }}
+        />
+        <TextInput
+          onChangeText={() => {}}
+          value={hostName}
+          placeholder={'Enter name as guest'}
+        ></TextInput>
+        <TextInput
+          onChangeText={() => {
+            setCode;
+          }}
+          placeholder={'Enter room-code'}
+        ></TextInput>
+        <Button
+          title='Join game'
+          onPress={() => {
+            navigation.navigate('HostFilter');
+          }}
+        />
+        <Button
+          title='MovieCard'
+          onPress={() => {
+            navigation.navigate('MovieCard');
+          }}
+        />
+      </View>
     </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   loginPage: {
-    background: 'rgba(0, 0, 0, 0.3)',
-  paddingTop: '5px',
-  paddingBottom: '15px',
-  marginLeft: '10%',
-  marginRight: '10%',
-  marginTop: '10%',
-  borderRadius: '10px',
-  height: '50%',
+    // backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    // paddingTop: '5px',
+    // paddingBottom: '15px',
+    // marginLeft: '10%',
+    // marginRight: '10%',
+    // marginTop: '10%',
+    // borderRadius: '10px',
+    // height: '50%',
   },
 
   body: {
-    flex: 1,
-  }
- 
-
-})
+    // flex: 1,
+  },
+});
