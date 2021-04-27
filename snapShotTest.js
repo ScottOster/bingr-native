@@ -4,9 +4,9 @@ export const changes = (totalPlayers) => {
   firebase
     .firestore()
     .collection('OFRJ')
-    .doc('10191')
+    .doc('808')
     .onSnapshot((snapshot) => {
-      //console.log(snapshot.data(), 'in snapshot');
+      console.log(totalPlayers, 'TPLAYERS VAR');
       if (snapshot.data().tally === totalPlayers) {
         console.log('voting finished');
       }

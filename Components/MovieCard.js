@@ -26,7 +26,7 @@ export const MovieCard = ({ navigation, roomCode }) => {
   };
 
   useEffect(() => {
-    changes(5);
+    changes(15);
     const roomCode = 'OFRJ';
     getMovieByPosition(roomCode, counter).then((movie) => {
       setCurrentFilm(movie);
@@ -48,15 +48,15 @@ export const MovieCard = ({ navigation, roomCode }) => {
         title='cringr'
         onPress={() => {
           incrementCounter();
-          updateVotesTally('HB7O', String(id));
+          updateVotesTally('OFRJ', String(id));
         }}
       />
       <Button
         title='bingr'
         onPress={() => {
           incrementCounter();
-          updateVotesTally('HB7O', String(id));
-          updateVotesCount('HB7O', String(id));
+          updateVotesTally('OFRJ', String(id));
+          updateVotesCount('OFRJ', String(id));
         }}
       />
     </View>
