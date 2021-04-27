@@ -7,7 +7,7 @@ import { createGameRoom } from '../utils/createGameRoom';
 import { createUserRoom } from '../firebase-api';
 
 export const HostFilter = ({ navigation, route }) => {
-  const {trackName} = route.params
+  const { trackName } = route.params;
   const [netflix, setIsNetflixEnabled] = useState(false);
   const [amazon, setIsAmazonEnabled] = useState(false);
   const [disney, setIsDisneyEnabled] = useState(false);
@@ -163,10 +163,11 @@ export const HostFilter = ({ navigation, route }) => {
           title="Start"
           onPress={() => {
             initiateMovieList(providers, genres).then((movies) => {
-              createGameRoom(roomCode, movies);
+              const finalMovies = movies.slice(0,20)
+              createGameRoom(roomCode, finalMovies);
               createUserRoom(roomCode, trackName);
               console.log('movies added to DB');
-              navigation.navigate('WaitingRoom', { roomCode, trackName});
+              navigation.navigate('WaitingRoom', { roomCode, trackName });
             });
           }}
         />
