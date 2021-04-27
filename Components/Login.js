@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
-import logo from '../logo.png'
 import { LinearGradient } from 'expo-linear-gradient';
-
+import logo from '../logo.png';
 
 export const Login = ({ navigation, hostName }, setCode) => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState('');
 
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
       <View style={styles.loginPage}>
-
         <View style={styles.loginLogo}>
           <Image style={styles.loginLogo} source={logo} />
         </View>
 
         <View style={styles.login}>
-
-
-          <TextInput style={styles.textInput} onChangeText={(e) => { setName(e) }} value={hostName} placeholder={"Enter name"} placeholderTextColor={'#f9f9f9'}></TextInput>
-          <TouchableOpacity onPress={() => {
-
-            navigation.navigate('HostFilter');
-          }} style={styles.button}>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={(e) => {
+              setName(e);
+            }}
+            value={hostName}
+            placeholder={'Enter name'}
+            placeholderTextColor={'#f9f9f9'}></TextInput>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('HostFilter');
+            }}
+            style={styles.button}>
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
@@ -31,24 +35,31 @@ export const Login = ({ navigation, hostName }, setCode) => {
               style={styles.button}
               useAngle={true}
               angle={100}
-              angleCenter={{ x: 0.5, y: 0.5 }}
-            >
-              <Text style={styles.buttonText}>
-                HOST GAME
-          </Text>
+              angleCenter={{ x: 0.5, y: 0.5 }}>
+              <Text style={styles.buttonText}>HOST GAME</Text>
             </LinearGradient>
           </TouchableOpacity>
 
-
           <Text style={styles.or}>OR</Text>
 
-
-          <TextInput style={styles.textInput} onChangeText={() => { }} value={hostName} placeholder={"Enter guest name"} placeholderTextColor={'#f9f9f9'}></TextInput>
-          <TextInput style={styles.textInput} onChangeText={() => { setCode }} placeholder={"Room Code"} placeholderTextColor={'#f9f9f9'}></TextInput>
-          <TouchableOpacity onPress={() => {
-
-            navigation.navigate('HostFilter');
-          }} style={styles.button}>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={() => {}}
+            value={hostName}
+            placeholder={'Enter guest name'}
+            placeholderTextColor={'#f9f9f9'}></TextInput>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={() => {
+              setCode;
+            }}
+            placeholder={'Room Code'}
+            placeholderTextColor={'#f9f9f9'}></TextInput>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('HostFilter');
+            }}
+            style={styles.button}>
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
@@ -57,14 +68,10 @@ export const Login = ({ navigation, hostName }, setCode) => {
               style={styles.button}
               useAngle={true}
               angle={300}
-              angleCenter={{ x: 0.5, y: 0.5 }}
-            >
-              <Text style={styles.buttonText}>
-                JOIN GAME
-          </Text>
+              angleCenter={{ x: 0.5, y: 0.5 }}>
+              <Text style={styles.buttonText}>JOIN GAME</Text>
             </LinearGradient>
           </TouchableOpacity>
-
         </View>
       </View>
       <View style={styles.devs}>
@@ -80,86 +87,74 @@ export const Login = ({ navigation, hostName }, setCode) => {
 const styles = StyleSheet.create({
   loginPage: {
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    paddingTop: '5px',
-    paddingBottom: '15px',
-    marginLeft: '10%',
-    marginRight: '10%',
-    marginTop: '10%',
-    marginBottom: '10%',
-    borderRadius: '10px',
-    height: '80%',
+    paddingTop: 5,
+    paddingBottom: 15,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    height: 80,
   },
-
   body: {
     flex: 1,
   },
-
   loginLogo: {
-    height: '100px',
-    width: '100px',
+    height: 100,
+    width: 100,
     // maxWidth: '30%',
-    display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto',
-    paddingTop: '10px',
-    paddingBottom: '10px',
+    paddingTop: 10,
+    paddingBottom: 10,
     // width: '50%',
-    marginTop: '10%',
-    marginBottom: '50px',
+    marginTop: 10,
+    marginBottom: 50,
   },
-
   login: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    marginLeft: '20%',
-    marginRight: '20%',
+    marginLeft: 20,
+    marginRight: 20,
   },
-
   textInput: {
     // opacity: '0.1',
-    marginBottom: '10px',
-    borderBottomColor: '#f9f9f9',
-    borderBottomWidth: '1px',
-    padding: '5px',
+    marginBottom: 10,
+    borderBottomColor: '#F9F9F9',
+    borderBottomWidth: 1,
+    padding: 5,
     textAlign: 'left',
-
   },
-
   button: {
     width: 120,
     height: 40,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: '10px',
-    marginTop: '10px',
+    marginBottom: 10,
+    marginTop: 10,
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 10,
-    // backgroundColor: '#2c3e50',
+    // backgroundColor: '#2C3E50',
   },
-
   buttonText: {
     fontSize: 14,
     textAlign: 'center',
     margin: 10,
-    color: '#ffffff',
+    color: '#FFFFFF',
   },
-
   or: {
-    color: '#f9f9f9',
+    color: '#F9F9F9',
     textAlign: 'center',
-    margin: '10px',
+    margin: 10,
   },
-
   devs: {
     textAlign: 'center',
-    marginBottom: '2%',
+    marginBottom: 2,
   },
-
   dev: {
     fontSize: 10,
-    color: '#f9f9f9',
-
+    color: '#F9F9F9',
   }
 })

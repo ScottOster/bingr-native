@@ -177,18 +177,16 @@ export const HostFilter = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   backGround: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#F2F2F2',
     flex: 1,
   },
-
   greeting: {
     fontSize: 35,
     textAlign: 'center',
     marginTop: 20,
     marginBottom: 20,
-    color: '#4d4d4d',
+    color: '#4D4D4D',
   },
-
   questions: {
     fontSize: 15,
     marginLeft: 15,
@@ -196,42 +194,40 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: '#666666',
   },
-
   switch: {
-    display: 'inline-block',
-    alignItem: 'center',
     marginLeft: 50,
     marginRight: 15,
     margin: 7,
   },
-
   switchAndText: {
-    display: 'inline-block',
-    alignItem: 'center',
   },
-
   text: {
     fontSize: 15,
     color: '#666666',
   },
-
   button: {
     width: 120,
     height: 40,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: '10px',
+    marginBottom: 10,
     marginTop: 20,
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 10,
-    // backgroundColor: '#2c3e50',
+    // backgroundColor: '#2C3E50',
   },
-
   buttonText: {
     fontSize: 14,
     textAlign: 'center',
     margin: 10,
-    color: '#ffffff',
+    color: '#FFFFFF',
   },
 });
+
+
+
+
+
+
+
