@@ -1,10 +1,5 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import firebaseConfig from '../config';
-import { formatGamesRoomMovies } from '../utils/utils';
-// firebase.initializeApp(firebaseConfig);
+import firebase from '../config';
 export const createGameRoom = (code, bigMovieData) => {
-  const batch = firebase.firestore().batch();
   const newCollection = firebase.firestore().collection(code);
   bigMovieData.forEach((movie, index) => {
     const movieId = bigMovieData[index].id;
@@ -22,7 +17,7 @@ export const createGameRoom = (code, bigMovieData) => {
       title,
       video,
       vote_average,
-      vote_count,
+      vote_count
     } = bigMovieData[index];
 
     firebase.firestore().collection(code).doc(movieId.toString()).set({
@@ -41,7 +36,7 @@ export const createGameRoom = (code, bigMovieData) => {
       vote_average,
       vote_count,
       increment_votes: 0,
-      tally: 0,
+      tally: 0
     });
   });
 };
