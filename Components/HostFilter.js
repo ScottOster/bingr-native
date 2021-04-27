@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { Button, Switch, View, Text } from 'react-native';
 import { codeGenerator } from '../codeGenerator';
 import { initiateMovieList } from '../movieList';
@@ -163,7 +162,7 @@ export const HostFilter = ({ navigation, route }) => {
           title="Start"
           onPress={() => {
             initiateMovieList(providers, genres).then((movies) => {
-              const finalMovies = movies.slice(0,20)
+              const finalMovies = movies.slice(0, 20);
               createGameRoom(roomCode, finalMovies);
               createUserRoom(roomCode, trackName);
               console.log('movies added to DB');

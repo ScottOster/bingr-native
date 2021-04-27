@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import logo from '../logo.png';
 
 export const Login = ({ navigation }) => {
   const [trackName, setTrackName] = useState('');
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: null
+    });
+  });
 
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
