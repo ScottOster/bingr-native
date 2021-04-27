@@ -16,17 +16,16 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen name='Login' component={Login}></Stack.Screen>
-        <Stack.Screen name='HostFilter' component={HostFilter}></Stack.Screen>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login}></Stack.Screen>
+        <Stack.Screen name="HostFilter" component={HostFilter}></Stack.Screen>
         <Stack.Screen
-          name='WaitingRoom'
+          name="WaitingRoom"
           component={WaitingRoom}
           setRoomCode={setRoomCode}
-          roomCode={roomCode}
-        ></Stack.Screen>
-        <Stack.Screen name='MovieCard' component={MovieCard}></Stack.Screen>
-        <Stack.Screen name='Result' component={Result}></Stack.Screen>
+          roomCode={roomCode}></Stack.Screen>
+        <Stack.Screen name="MovieCard" component={MovieCard}></Stack.Screen>
+        <Stack.Screen name="Result" component={Result}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

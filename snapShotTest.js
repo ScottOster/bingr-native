@@ -3,8 +3,8 @@ import firebase from './config';
 export const changes = (totalPlayers) => {
   firebase
     .firestore()
-    .collection('HB7O')
-    .doc('106646')
+    .collection('OFRJ')
+    .doc('10191')
     .onSnapshot((snapshot) => {
       //console.log(snapshot.data(), 'in snapshot');
       if (snapshot.data().tally === totalPlayers) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
-import logo from '../logo.png';
 import { LinearGradient } from 'expo-linear-gradient';
+import logo from '../logo.png';
 
 export const Login = ({ navigation, hostName }, setCode) => {
   const [name, setName] = useState('');
@@ -15,10 +15,9 @@ export const Login = ({ navigation, hostName }, setCode) => {
             setName(e);
           }}
           value={hostName}
-          placeholder={'Enter name'}
-        ></TextInput>
+          placeholder={'Enter name'}></TextInput>
         <Button
-          title='Host Game'
+          title="Host Game"
           onPress={() => {
             navigation.navigate('HostFilter');
           }}
@@ -26,22 +25,20 @@ export const Login = ({ navigation, hostName }, setCode) => {
         <TextInput
           onChangeText={() => {}}
           value={hostName}
-          placeholder={'Enter name as guest'}
-        ></TextInput>
+          placeholder={'Enter name as guest'}></TextInput>
         <TextInput
           onChangeText={() => {
             setCode;
           }}
-          placeholder={'Enter room-code'}
-        ></TextInput>
+          placeholder={'Enter room-code'}></TextInput>
         <Button
-          title='Join game'
+          title="Join game"
           onPress={() => {
             navigation.navigate('HostFilter');
           }}
         />
         <Button
-          title='MovieCard'
+          title="MovieCard"
           onPress={() => {
             navigation.navigate('MovieCard');
           }}

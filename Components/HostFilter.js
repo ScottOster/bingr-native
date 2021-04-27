@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { Button, Switch, View, Text } from 'react-native';
 import { codeGenerator } from '../codeGenerator';
 import { initiateMovieList } from '../movieList';
@@ -16,12 +16,6 @@ export const HostFilter = ({ navigation }) => {
   const [providers, setProviders] = useState([]);
   const [genres, setGenres] = useState([]);
   const [roomCode, setRoomCode] = useState('');
-
-  useEffect(() => {
-    const code = codeGenerator();
-    console.log(code);
-    setRoomCode(code);
-  }, []);
 
   const toggleSwitch = (id) => {
     if (id === 8) {
@@ -78,11 +72,11 @@ export const HostFilter = ({ navigation }) => {
       <Text>What are you watching on?</Text>
       <View>
         <Switch
-          className='setProviders'
-          id=''
+          className="setProviders"
+          id=""
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={netflix ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor='#3e3e3e'
+          ios_backgroundColor="#3e3e3e"
           onValueChange={() => toggleSwitch(8)}
           value={netflix}
         />
@@ -90,10 +84,10 @@ export const HostFilter = ({ navigation }) => {
       </View>
       <View>
         <Switch
-          className='setProviders'
+          className="setProviders"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={amazon ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor='#3e3e3e'
+          ios_backgroundColor="#3e3e3e"
           onValueChange={() => toggleSwitch(9)}
           value={amazon}
         />
@@ -101,10 +95,10 @@ export const HostFilter = ({ navigation }) => {
       </View>
       <View>
         <Switch
-          className='setProviders'
+          className="setProviders"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={disney ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor='#3e3e3e'
+          ios_backgroundColor="#3e3e3e"
           onValueChange={() => toggleSwitch(337)}
           value={disney}
         />
@@ -113,10 +107,10 @@ export const HostFilter = ({ navigation }) => {
       <Text>Select a genre</Text>
       <View>
         <Switch
-          className='setGenres'
+          className="setGenres"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={action ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor='#3e3e3e'
+          ios_backgroundColor="#3e3e3e"
           onValueChange={() => toggleSwitch(28)}
           value={action}
         />
@@ -124,10 +118,10 @@ export const HostFilter = ({ navigation }) => {
       </View>
       <View>
         <Switch
-          className='setGenres'
+          className="setGenres"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={comedy ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor='#3e3e3e'
+          ios_backgroundColor="#3e3e3e"
           onValueChange={() => toggleSwitch(35)}
           value={comedy}
         />
@@ -135,10 +129,10 @@ export const HostFilter = ({ navigation }) => {
       </View>
       <View>
         <Switch
-          className='setGenres'
+          className="setGenres"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={fantasy ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor='#3e3e3e'
+          ios_backgroundColor="#3e3e3e"
           onValueChange={() => toggleSwitch(14)}
           value={fantasy}
         />
@@ -146,17 +140,17 @@ export const HostFilter = ({ navigation }) => {
       </View>
       <View>
         <Switch
-          className='setGenres'
+          className="setGenres"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={horror ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor='#3e3e3e'
+          ios_backgroundColor="#3e3e3e"
           onValueChange={() => toggleSwitch(27)}
           value={horror}
         />
         <Text>Horror</Text>
       </View>
       <Button
-        title='Start'
+        title="Start"
         onPress={() => {
           initiateMovieList(providers, genres).then((movies) => {
             createGameRoom(roomCode, movies);

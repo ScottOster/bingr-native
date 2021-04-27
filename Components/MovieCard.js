@@ -26,8 +26,8 @@ export const MovieCard = ({ navigation, roomCode }) => {
   };
 
   useEffect(() => {
-    changes(totalPlayers);
-    const roomCode = 'HB7O';
+    changes(5);
+    const roomCode = 'OFRJ';
     getMovieByPosition(roomCode, counter).then((movie) => {
       setCurrentFilm(movie);
     });
