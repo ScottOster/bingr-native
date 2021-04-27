@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
-import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
-
+import {
+  updateVotesTally,
+  getMovieByPosition,
+  updateVotesCount,
+} from '../firebase-api';
+import { changes } from '../snapShotTest';
 export const MovieCard = ({ navigation, roomCode }) => {
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
@@ -10,7 +14,7 @@ export const MovieCard = ({ navigation, roomCode }) => {
     if (counter < 19) {
       setCounter((prevState) => {
         const newState = prevState;
-        console.log(newState, 'increment');
+        //console.log(newState, 'increment');
         return newState + 1;
       });
     } else {
@@ -22,7 +26,8 @@ export const MovieCard = ({ navigation, roomCode }) => {
   };
 
   useEffect(() => {
-    const roomCode = 'HB7O';
+    changes(5);
+    const roomCode = 'OFRJ';
     getMovieByPosition(roomCode, counter).then((movie) => {
       setCurrentFilm(movie);
     });
@@ -40,14 +45,14 @@ export const MovieCard = ({ navigation, roomCode }) => {
         source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
       />
       <Button
-        title="cringr"
+        title='cringr'
         onPress={() => {
           incrementCounter();
           updateVotesTally('HB7O', String(id));
         }}
       />
       <Button
-        title="bingr"
+        title='bingr'
         onPress={() => {
           incrementCounter();
           updateVotesTally('HB7O', String(id));

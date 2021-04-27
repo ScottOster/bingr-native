@@ -43,3 +43,7 @@ export const updateVotesCount = (roomCode, movieId) => {
 export const updateVotesTally = (roomCode, movieId) => {
   db.collection(roomCode).doc(movieId).update({ tally: increment });
 };
+
+export const createUserRoom = (roomCode, hostName) => {
+  db.collection(`${roomCode}users`).doc(hostName).set({ name: hostName });
+};

@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { Button, Switch, View, Text } from 'react-native';
+import { codeGenerator } from '../codeGenerator';
 import { initiateMovieList } from '../movieList';
+import { createGameRoom } from '../utils/createGameRoom';
+import { createUserRoom } from '../firebase-api';
 
 export const HostFilter = ({ navigation, route }) => {
+  const {trackName} = route.params
   const [netflix, setIsNetflixEnabled] = useState(false);
   const [amazon, setIsAmazonEnabled] = useState(false);
   const [disney, setIsDisneyEnabled] = useState(false);
@@ -12,6 +17,13 @@ export const HostFilter = ({ navigation, route }) => {
   const [horror, setIsHorrorEnabled] = useState(false);
   const [providers, setProviders] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [roomCode, setRoomCode] = useState('');
+
+  useEffect(() => {
+    const code = codeGenerator();
+    console.log(code);
+    setRoomCode(code);
+  }, []);
 
   const toggleSwitch = (id) => {
     if (id === 8) {
@@ -64,7 +76,7 @@ export const HostFilter = ({ navigation, route }) => {
 
   return (
     <View>
-      <Text>Hello {route.params.trackName}</Text>
+      <Text>Hello {trackName}</Text>
       <Text>What are you watching on?</Text>
       <View>
         <Switch
@@ -150,9 +162,11 @@ export const HostFilter = ({ navigation, route }) => {
         <Button
           title="Start"
           onPress={() => {
-            initiateMovieList(providers, genres).then(() => {
+            initiateMovieList(providers, genres).then((movies) => {
+              createGameRoom(roomCode, movies);
+              createUserRoom(roomCode, trackName);
               console.log('movies added to DB');
-              navigation.navigate('WaitingRoom', { roomcode: 'AXRG' });
+              navigation.navigate('WaitingRoom', { roomCode, trackName});
             });
           }}
         />

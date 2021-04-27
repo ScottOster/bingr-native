@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRoute } from '@react-navigation/native';
 import logo from '../logo.png';
 
 export const Login = ({ navigation }) => {
