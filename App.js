@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Login } from './Components/Login';
 import { HostFilter } from './Components/HostFilter';
-import { MoviesList } from './Components/MoviesList';
+import { MovieCard } from './Components/MovieCard';
 import { WaitingRoom } from './Components/WaitingRoom';
 import { Result } from './Components/Result';
 
