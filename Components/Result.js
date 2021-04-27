@@ -31,7 +31,7 @@ export const Result = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    changes(107);
+    changes(1);
   }, []);
 
   return isLoading ? (
