@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, View, Text } from 'react-native';
+import { Button, Switch, View, Text } from 'react-native';
 
 export const HostFilter = ({ navigation }) => {
 
@@ -14,7 +14,6 @@ export const HostFilter = ({ navigation }) => {
   const [genres,setGenres] = useState([])
 
   const toggleSwitch = (id) => {
-    let p = ''
     
     if (id === 8) {
       setIsNetflixEnabled((previousState) => !previousState);
@@ -149,6 +148,12 @@ console.log(providers, genres)
         />
         <Text>Horror</Text>
     </View>
+    <Button
+        title='Start'
+        onPress={() => {
+          navigation.navigate('WaitingRoom');
+        }}
+      />
 
     </View>
   );

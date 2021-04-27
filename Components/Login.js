@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
-import { Button, View, Text, Image, TextInput } from 'react-native';
+import { StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
 import logo from '../logo.png'
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 export const Login = ({ navigation, hostName}, setCode) => {
 const [name, setName] = useState('')
 
   return (
-    <View>
+    <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
+    <View style={styles.loginPage}>
       <Image source={logo} style={{ width: 50, height: 50 }} />
       <TextInput onChangeText={(e)=> {
+        console.log(name);
         setName(e)
        
         }} value={hostName} placeholder={"Enter name"}></TextInput>
@@ -30,5 +33,25 @@ const [name, setName] = useState('')
       />
       
     </View>
+    </LinearGradient>
   );
 };
+
+const styles = StyleSheet.create({
+  loginPage: {
+    background: 'rgba(0, 0, 0, 0.3)',
+  paddingTop: '5px',
+  paddingBottom: '15px',
+  marginLeft: '10%',
+  marginRight: '10%',
+  marginTop: '10%',
+  borderRadius: '10px',
+  height: '50%',
+  },
+
+  body: {
+    flex: 1,
+  }
+ 
+
+})
