@@ -17,7 +17,7 @@ export const createGameRoom = (code, bigMovieData) => {
       title,
       video,
       vote_average,
-      vote_count
+      vote_count,
     } = bigMovieData[index];
 
     firebase.firestore().collection(code).doc(movieId.toString()).set({
@@ -36,7 +36,7 @@ export const createGameRoom = (code, bigMovieData) => {
       vote_average,
       vote_count,
       increment_votes: 0,
-      tally: 0
+      tally: 0,
     });
   });
 };

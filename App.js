@@ -13,10 +13,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{ headerShown: false }}
-      >
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login}></Stack.Screen>
         <Stack.Screen name="HostFilter" component={HostFilter}></Stack.Screen>
         <Stack.Screen name="WaitingRoom" component={WaitingRoom}></Stack.Screen>
@@ -32,6 +29,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });

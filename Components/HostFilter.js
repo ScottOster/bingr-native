@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Switch, View, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, Button, Switch, View, Text } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { codeGenerator } from '../codeGenerator';
 import { initiateMovieList } from '../movieList';
 import { createGameRoom } from '../utils/createGameRoom';
@@ -74,105 +75,173 @@ export const HostFilter = ({ navigation, route }) => {
   };
 
   return (
-    <View>
-      <Text>Hello {trackName}</Text>
-      <Text>What are you watching on?</Text>
-      <View>
-        <Switch
-          className="setProviders"
-          id=""
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={netflix ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => toggleSwitch(8)}
-          value={netflix}
-        />
-        <Text>Netlix</Text>
+    <View style={styles.backGround}>
+      <View style={styles.filterBox}>
+        <Text style={styles.greeting}>Hi Nate</Text>
+        <Text style={styles.questions}>What are you watching on?</Text>
+        <View style={styles.switchAndText}>
+          <Switch
+            style={styles.switch}
+            className="setProviders"
+            id=""
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={netflix ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => toggleSwitch(8)}
+            value={netflix}
+          />
+          <Text style={styles.text}>Netlix</Text>
+        </View>
+        <View style={styles.switchAndText}>
+          <Switch
+            style={styles.switch}
+            className="setProviders"
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={amazon ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => toggleSwitch(9)}
+            value={amazon}
+          />
+          <Text style={styles.text}>Amazon</Text>
+        </View>
+        <View style={styles.switchAndText}>
+          <Switch
+            style={styles.switch}
+            className="setProviders"
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={disney ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => toggleSwitch(337)}
+            value={disney}
+          />
+          <Text style={styles.text}>Disney</Text>
+        </View>
+        <Text style={styles.questions}>What genre?</Text>
+        <View style={styles.switchAndText}>
+          <Switch
+            style={styles.switch}
+            className="setGenres"
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={action ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => toggleSwitch(28)}
+            value={action}
+          />
+          <Text style={styles.text}>Action</Text>
+        </View>
+        <View style={styles.switchAndText}>
+          <Switch
+            style={styles.switch}
+            className="setGenres"
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={comedy ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => toggleSwitch(35)}
+            value={comedy}
+          />
+          <Text style={styles.text}>Comedy</Text>
+        </View>
+        <View style={styles.switchAndText}>
+          <Switch
+            style={styles.switch}
+            className="setGenres"
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={fantasy ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => toggleSwitch(14)}
+            value={fantasy}
+          />
+          <Text style={styles.text}>Fantasy</Text>
+        </View>
+        <View style={styles.switchAndText}>
+          <Switch
+            style={styles.switch}
+            className="setGenres"
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={horror ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={() => toggleSwitch(27)}
+            value={horror}
+          />
+          <Text style={styles.text}>Horror</Text>
+        </View>
+        {providers.length && genres.length ? (
+          <TouchableOpacity
+            onPress={() => {
+              initiateMovieList(providers, genres).then((movies) => {
+                const finalMovies = movies.slice(0, 20);
+                createGameRoom(roomCode, finalMovies);
+                createUserRoom(roomCode, trackName);
+                console.log('movies added to DB');
+                navigation.navigate('WaitingRoom', { roomCode, trackName });
+              });
+            }}
+            style={styles.button}>
+            <LinearGradient
+              start={{ x: 0.0, y: 0.0 }}
+              end={{ x: 0.0, y: 0.0 }}
+              locations={[0.0, 0.74]}
+              colors={['#4ac6cd', '#49d695']}
+              style={styles.button}
+              useAngle={true}
+              angle={100}
+              angleCenter={{ x: 0.5, y: 0.5 }}>
+              <Text style={styles.buttonText}>START</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        ) : (
+          <Text>Please select atleast one provider and one genre</Text>
+        )}
       </View>
-      <View>
-        <Switch
-          className="setProviders"
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={amazon ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => toggleSwitch(9)}
-          value={amazon}
-        />
-        <Text>Amazon</Text>
-      </View>
-      <View>
-        <Switch
-          className="setProviders"
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={disney ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => toggleSwitch(337)}
-          value={disney}
-        />
-        <Text>Disney</Text>
-      </View>
-      <Text>Select a genre</Text>
-      <View>
-        <Switch
-          className="setGenres"
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={action ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => toggleSwitch(28)}
-          value={action}
-        />
-        <Text>Action</Text>
-      </View>
-      <View>
-        <Switch
-          className="setGenres"
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={comedy ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => toggleSwitch(35)}
-          value={comedy}
-        />
-        <Text>Comedy</Text>
-      </View>
-      <View>
-        <Switch
-          className="setGenres"
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={fantasy ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => toggleSwitch(14)}
-          value={fantasy}
-        />
-        <Text>Fantasy</Text>
-      </View>
-      <View>
-        <Switch
-          className="setGenres"
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={horror ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => toggleSwitch(27)}
-          value={horror}
-        />
-        <Text>Horror</Text>
-      </View>
-
-      {providers.length && genres.length ? (
-        <Button
-          title="Start"
-          onPress={() => {
-            initiateMovieList(providers, genres).then((movies) => {
-              const finalMovies = movies.slice(0, 20);
-              createGameRoom(roomCode, finalMovies);
-              createUserRoom(roomCode, trackName);
-              console.log('movies added to DB');
-              navigation.navigate('WaitingRoom', { roomCode, trackName });
-            });
-          }}
-        />
-      ) : (
-        <Text>Please select atleast one provider and one genre</Text>
-      )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  backGround: {
+    backgroundColor: '#F2F2F2',
+    flex: 1,
+  },
+  greeting: {
+    fontSize: 35,
+    textAlign: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+    color: '#4D4D4D',
+  },
+  questions: {
+    fontSize: 15,
+    marginLeft: 15,
+    marginBottom: 10,
+    marginTop: 10,
+    color: '#666666',
+  },
+  switch: {
+    marginLeft: 50,
+    marginRight: 15,
+    margin: 7,
+  },
+  switchAndText: {},
+  text: {
+    fontSize: 15,
+    color: '#666666',
+  },
+  button: {
+    width: 120,
+    height: 40,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: 10,
+    marginTop: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: 10,
+    // backgroundColor: '#2C3E50',
+  },
+  buttonText: {
+    fontSize: 14,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF',
+  },
+});
