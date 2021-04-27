@@ -1,48 +1,178 @@
-import React, { useState } from 'react';
-import { Switch, View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Button, Switch, View, Text } from 'react-native';
+import { codeGenerator } from '../codeGenerator';
+import { initiateMovieList } from '../movieList';
+import { createGameRoom } from '../utils/createGameRoom';
+import { createUserRoom } from '../firebase-api';
 
-export const HostFilter = ({ navigation }) => {
+export const HostFilter = ({ navigation, route }) => {
+  const { trackName } = route.params;
+  const [netflix, setIsNetflixEnabled] = useState(false);
+  const [amazon, setIsAmazonEnabled] = useState(false);
+  const [disney, setIsDisneyEnabled] = useState(false);
+  const [action, setIsActionEnabled] = useState(false);
+  const [comedy, setIsComedyEnabled] = useState(false);
+  const [fantasy, setIsFantasyEnabled] = useState(false);
+  const [horror, setIsHorrorEnabled] = useState(false);
   const [providers, setProviders] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = (provider, isEnabled, className) => {
-    const id = Number(provider);
-    if (className === 'setProviders') {
-      setProviders((previousState) => {
-        return updateState(id, isEnabled, previousState);
+  const [genres, setGenres] = useState([]);
+  const [roomCode, setRoomCode] = useState('');
+
+  useEffect(() => {
+    const code = codeGenerator();
+    console.log(code);
+    setRoomCode(code);
+  }, []);
+
+  const toggleSwitch = (id) => {
+    if (id === 8) {
+      setIsNetflixEnabled((previousState) => !previousState);
+    }
+    if (id === 9) {
+      setIsAmazonEnabled((previousState) => !previousState);
+    }
+    if (id === 337) {
+      setIsDisneyEnabled((previousState) => !previousState);
+    }
+    if (id === 28) {
+      setIsActionEnabled((previousState) => !previousState);
+    }
+    if (id === 35) {
+      setIsComedyEnabled((previousState) => !previousState);
+    }
+    if (id === 14) {
+      setIsFantasyEnabled((previousState) => !previousState);
+    }
+    if (id === 27) {
+      setIsHorrorEnabled((previousState) => !previousState);
+    }
+    if (id === 8 || id === 9 || id === 337) {
+      setProviders((prevState) => {
+        if (providers.includes(id)) {
+          const newState = [...prevState];
+          const index = newState.indexOf(id);
+          newState.splice(index, 1);
+          return newState;
+        } else {
+          const newState = [...prevState, id];
+          return newState;
+        }
       });
     } else {
-      setCategories((previousState) => {
-        return updateState(id, isEnabled, previousState);
+      setGenres((prevState) => {
+        if (genres.includes(id)) {
+          const newState = [...prevState];
+          const index = newState.indexOf(id);
+          newState.splice(index, 1);
+          return newState;
+        } else {
+          const newState = [...prevState, id];
+          return newState;
+        }
       });
     }
-
-    const updateState = (id, checked, previousState) => {
-      if (checked) {
-        const newState = [...previousState, id];
-        return newState;
-      } else {
-        const newState = [...previousState];
-        const index = newState.indexOf(id);
-        newState.splice(index, 1);
-        return newState;
-      }
-    };
-    setIsEnabled((previousState) => !previousState);
   };
-  console.dir(providers);
 
   return (
     <View>
-      <Text>Test host filter</Text>
-      <Switch
-        className='setProviders'
-        trackColor={{ false: '#767577', true: '#81b0ff' }}
-        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor='#3e3e3e'
-        onValueChange={toggleSwitch}
-        value='8'
-      />
+      <Text>Hello {trackName}</Text>
+      <Text>What are you watching on?</Text>
+      <View>
+        <Switch
+          className="setProviders"
+          id=""
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={netflix ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => toggleSwitch(8)}
+          value={netflix}
+        />
+        <Text>Netlix</Text>
+      </View>
+      <View>
+        <Switch
+          className="setProviders"
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={amazon ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => toggleSwitch(9)}
+          value={amazon}
+        />
+        <Text>Amazon</Text>
+      </View>
+      <View>
+        <Switch
+          className="setProviders"
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={disney ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => toggleSwitch(337)}
+          value={disney}
+        />
+        <Text>Disney</Text>
+      </View>
+      <Text>Select a genre</Text>
+      <View>
+        <Switch
+          className="setGenres"
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={action ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => toggleSwitch(28)}
+          value={action}
+        />
+        <Text>Action</Text>
+      </View>
+      <View>
+        <Switch
+          className="setGenres"
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={comedy ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => toggleSwitch(35)}
+          value={comedy}
+        />
+        <Text>Comedy</Text>
+      </View>
+      <View>
+        <Switch
+          className="setGenres"
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={fantasy ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => toggleSwitch(14)}
+          value={fantasy}
+        />
+        <Text>Fantasy</Text>
+      </View>
+      <View>
+        <Switch
+          className="setGenres"
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={horror ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => toggleSwitch(27)}
+          value={horror}
+        />
+        <Text>Horror</Text>
+      </View>
+
+      {providers.length && genres.length ? (
+        <Button
+          title="Start"
+          onPress={() => {
+            initiateMovieList(providers, genres).then((movies) => {
+              const finalMovies = movies.slice(0, 20);
+              createGameRoom(roomCode, finalMovies);
+              createUserRoom(roomCode, trackName);
+              console.log('movies added to DB');
+              navigation.navigate('WaitingRoom', { roomCode, trackName });
+            });
+          }}
+        />
+      ) : (
+        <Text>Please select atleast one provider and one genre</Text>
+      )}
     </View>
   );
 };
