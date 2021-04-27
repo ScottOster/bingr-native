@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Switch, View, Text } from 'react-native';
+import { initiateMovieList } from '../movieList';
 
-export const HostFilter = ({ navigation }) => {
-
+export const HostFilter = ({ navigation, route }) => {
   const [netflix, setIsNetflixEnabled] = useState(false);
   const [amazon, setIsAmazonEnabled] = useState(false);
   const [disney, setIsDisneyEnabled] = useState(false);
@@ -11,10 +11,9 @@ export const HostFilter = ({ navigation }) => {
   const [fantasy, setIsFantasyEnabled] = useState(false);
   const [horror, setIsHorrorEnabled] = useState(false);
   const [providers, setProviders] = useState([]);
-  const [genres,setGenres] = useState([])
+  const [genres, setGenres] = useState([]);
 
   const toggleSwitch = (id) => {
-    
     if (id === 8) {
       setIsNetflixEnabled((previousState) => !previousState);
     }
@@ -36,21 +35,20 @@ export const HostFilter = ({ navigation }) => {
     if (id === 27) {
       setIsHorrorEnabled((previousState) => !previousState);
     }
-    if (id === 8 ||id === 9 || id === 337) {
+    if (id === 8 || id === 9 || id === 337) {
       setProviders((prevState) => {
-      if (providers.includes(id)) {
-        const newState = [...prevState];
-        const index = newState.indexOf(id);
-        newState.splice(index, 1);
-        return newState;
-      } else {
-        const newState = [...prevState, id];
-        return newState;
-      }
-    })
-    } else{
+        if (providers.includes(id)) {
+          const newState = [...prevState];
+          const index = newState.indexOf(id);
+          newState.splice(index, 1);
+          return newState;
+        } else {
+          const newState = [...prevState, id];
+          return newState;
+        }
+      });
+    } else {
       setGenres((prevState) => {
-
         if (genres.includes(id)) {
           const newState = [...prevState];
           const index = newState.indexOf(id);
@@ -60,14 +58,13 @@ export const HostFilter = ({ navigation }) => {
           const newState = [...prevState, id];
           return newState;
         }
-      })
+      });
     }
-  
   };
-console.log(providers, genres)
+
   return (
     <View>
-      <Text>Hello Nate</Text>
+      <Text>Hello {route.params.trackName}</Text>
       <Text>What are you watching on?</Text>
       <View>
         <Switch
@@ -115,8 +112,8 @@ console.log(providers, genres)
         />
         <Text>Action</Text>
       </View>
-    <View>
-      <Switch
+      <View>
+        <Switch
           className="setGenres"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={comedy ? '#f5dd4b' : '#f4f3f4'}
@@ -125,9 +122,9 @@ console.log(providers, genres)
           value={comedy}
         />
         <Text>Comedy</Text>
-    </View>
-    <View>
-      <Switch
+      </View>
+      <View>
+        <Switch
           className="setGenres"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={fantasy ? '#f5dd4b' : '#f4f3f4'}
@@ -136,9 +133,9 @@ console.log(providers, genres)
           value={fantasy}
         />
         <Text>Fantasy</Text>
-    </View>
-    <View>
-      <Switch
+      </View>
+      <View>
+        <Switch
           className="setGenres"
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={horror ? '#f5dd4b' : '#f4f3f4'}
@@ -147,14 +144,21 @@ console.log(providers, genres)
           value={horror}
         />
         <Text>Horror</Text>
-    </View>
-    <Button
-        title='Start'
-        onPress={() => {
-          navigation.navigate('WaitingRoom');
-        }}
-      />
+      </View>
 
+      {providers.length && genres.length ? (
+        <Button
+          title="Start"
+          onPress={() => {
+            initiateMovieList(providers, genres).then(() => {
+              console.log('movies added to DB');
+              navigation.navigate('WaitingRoom', { roomcode: 'AXRG' });
+            });
+          }}
+        />
+      ) : (
+        <Text>Please select atleast one provider and one genre</Text>
+      )}
     </View>
   );
 };
