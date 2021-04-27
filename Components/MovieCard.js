@@ -11,6 +11,7 @@ export const MovieCard = ({ navigation, roomCode }) => {
   const [counter, setCounter] = useState(0);
 
   const incrementCounter = () => {
+    console.log(counter)
     if (counter < 19) {
       setCounter((prevState) => {
         const newState = prevState;
@@ -18,10 +19,10 @@ export const MovieCard = ({ navigation, roomCode }) => {
         return newState + 1;
       });
     } else {
+      navigation.navigate('Result');
       // TODO: Sort navigation
-      // () => {
-      //   navigation.navigate('Result');
-      // };
+      () => {
+      };
     }
   };
 

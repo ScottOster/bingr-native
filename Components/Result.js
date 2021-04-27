@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import firebase from '../config';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import { getTopFiveMovies, getMovie } from '../firebase-api';
 
@@ -7,21 +8,37 @@ export const Result = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [topMovie, setTopMovie] = useState();
 
-  useEffect(() => {
-    getTopFiveMovies('HB7O')
-      .then((topFiveFilms) => {
-        setTopFive(topFiveFilms);
-        return getMovie('HB7O', String(topFiveFilms[0].id));
-      })
-      .then((topMovie) => {
-        setTopMovie(topMovie);
-        setIsLoading(false);
+  const changes = (totalPlayers) => {
+    firebase
+      .firestore()
+      .collection('OFRJ')
+      .doc('808')
+      .onSnapshot((snapshot) => {
+        console.log(totalPlayers, 'TPLAYERS VAR');
+        if (snapshot.data().tally >= totalPlayers) {
+          getTopFiveMovies('OFRJ')
+            .then((topFiveFilms) => {
+              setTopFive(topFiveFilms);
+              return getMovie('OFRJ', String(topFiveFilms[0].id));
+            })
+            .then((topMovie) => {
+              setTopMovie(topMovie);
+              setIsLoading(false)
+            });
+          console.log('voting finished');
+          return true
+        }
       });
+  };
+  
+  useEffect(() => {
+    changes(105)
   }, []);
 
+  
   return isLoading ? (
     <View>
-      <Text>Page is loading</Text>
+      <Text>Waitinf for Players...</Text>
     </View>
   ) : (
     <View>
