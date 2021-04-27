@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../config';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import firebase from '../config';
 import { getTopFiveMovies, getMovie } from '../firebase-api';
 
 export const Result = () => {
@@ -14,7 +14,6 @@ export const Result = () => {
       .collection('OFRJ')
       .doc('808')
       .onSnapshot((snapshot) => {
-        console.log(totalPlayers, 'TPLAYERS VAR');
         if (snapshot.data().tally >= totalPlayers) {
           getTopFiveMovies('OFRJ')
             .then((topFiveFilms) => {
@@ -23,19 +22,17 @@ export const Result = () => {
             })
             .then((topMovie) => {
               setTopMovie(topMovie);
-              setIsLoading(false)
+              setIsLoading(false);
             });
-          console.log('voting finished');
-          return true
+          return true;
         }
       });
   };
-  
+
   useEffect(() => {
-    changes(105)
+    changes(107);
   }, []);
 
-  
   return isLoading ? (
     <View>
       <Text>Waitinf for Players...</Text>

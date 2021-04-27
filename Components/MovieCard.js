@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
-import {
-  updateVotesTally,
-  getMovieByPosition,
-  updateVotesCount,
-} from '../firebase-api';
+import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
 import { changes } from '../snapShotTest';
 export const MovieCard = ({ navigation, roomCode }) => {
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
 
   const incrementCounter = () => {
-    console.log(counter)
+    console.log(counter);
     if (counter < 19) {
       setCounter((prevState) => {
         const newState = prevState;
@@ -21,8 +17,7 @@ export const MovieCard = ({ navigation, roomCode }) => {
     } else {
       navigation.navigate('Result');
       // TODO: Sort navigation
-      () => {
-      };
+      () => {};
     }
   };
 
@@ -46,14 +41,14 @@ export const MovieCard = ({ navigation, roomCode }) => {
         source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
       />
       <Button
-        title='cringr'
+        title="cringr"
         onPress={() => {
           incrementCounter();
           updateVotesTally('OFRJ', String(id));
         }}
       />
       <Button
-        title='bingr'
+        title="bingr"
         onPress={() => {
           incrementCounter();
           updateVotesTally('OFRJ', String(id));
