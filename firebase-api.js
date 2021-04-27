@@ -48,6 +48,12 @@ export const createUserRoom = (roomCode, hostName) => {
   db.collection(`${roomCode}users`).doc(hostName).set({ name: hostName });
 };
 
-export const addUserToRoom = (roomCode, userName) => {
-  db.collection(`${roomCode}users`).doc(userName).set({ name: userName });
+export const addUserToRoom = async (roomCode, userName) => {
+  const snapshot = await db.collection(roomCode).get();
+  if (snapshot.empty) {
+    return false;
+  } else {
+    db.collection(`${roomCode}users`).doc(userName).set({ name: userName });
+    return true;
+  }
 };

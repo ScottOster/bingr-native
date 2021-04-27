@@ -15,6 +15,7 @@ import { addUserToRoom } from '../firebase-api';
 export const Login = ({ navigation }) => {
   const [trackName, setTrackName] = useState('');
   const [userRoomCode, setUserRoomCode] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
 
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
@@ -69,10 +70,15 @@ export const Login = ({ navigation }) => {
           ></TextInput>
           <TouchableOpacity
             onPress={() => {
-              addUserToRoom(userRoomCode, trackName);
-              navigation.navigate('WaitingRoom', {
-                trackName,
-                roomCode: userRoomCode
+              addUserToRoom(userRoomCode, trackName).then((res) => {
+                if (res) {
+                  navigation.navigate('WaitingRoom', {
+                    trackName,
+                    roomCode: userRoomCode
+                  });
+                } else {
+                  setErrorMessage(true);
+                }
               });
             }}
             style={styles.button}
@@ -91,6 +97,11 @@ export const Login = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
+        {errorMessage && (
+          <View>
+            <Text>Invalid room</Text>
+          </View>
+        )}
       </View>
       <View style={styles.devs}>
         <Text style={styles.dev}>Deveoloped by:</Text>
