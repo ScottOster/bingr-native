@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
-import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
+import {
+  updateVotesTally,
+  getMovieByPosition,
+  updateVotesCount
+} from '../firebase-api';
 import { changes } from '../snapShotTest';
 
 export const MovieCard = ({ navigation, route }) => {
-  const {roomCode} = route.params
+  const { roomCode, trackName } = route.params;
 
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
+  const [disabledBtn, setDisabledBtn] = useState(false);
 
   const incrementCounter = () => {
     if (counter < 19) {
       setCounter((prevState) => {
         const newState = prevState;
-        //console.log(newState, 'increment');
         return newState + 1;
       });
     } else {
-      // TODO: Sort navigation
-      // () => {
-      //   navigation.navigate('Result');
-      // };
+      navigation.navigate('Result', { roomCode, trackName });
     }
   };
 
@@ -28,6 +29,7 @@ export const MovieCard = ({ navigation, route }) => {
     changes(5);
     getMovieByPosition(roomCode, counter).then((movie) => {
       setCurrentFilm(movie);
+      setDisabledBtn(false);
     });
   }, [counter]);
 
@@ -44,17 +46,21 @@ export const MovieCard = ({ navigation, route }) => {
       />
       <Button
         title="cringr"
+        disabled={disabledBtn}
         onPress={() => {
           incrementCounter();
           updateVotesTally(roomCode, String(id));
+          setDisabledBtn(true);
         }}
       />
       <Button
         title="bingr"
+        disabled={disabledBtn}
         onPress={() => {
           incrementCounter();
           updateVotesTally(roomCode, String(id));
           updateVotesCount(roomCode, String(id));
+          setDisabledBtn(true);
         }}
       />
     </View>
@@ -63,14 +69,14 @@ export const MovieCard = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: 50
   },
   tinyLogo: {
     width: 50,
-    height: 50,
+    height: 50
   },
   logo: {
     width: 66,
-    height: 58,
-  },
+    height: 58
+  }
 });

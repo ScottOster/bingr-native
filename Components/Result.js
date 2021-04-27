@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import { getTopFiveMovies, getMovie } from '../firebase-api';
 
-export const Result = () => {
-  const [topFive, setTopFive] = useState([]);
+export const Result = ({ navigation, route }) => {
+  const { roomCode, trackName } = route.params;
+
   const [isLoading, setIsLoading] = useState(true);
   const [topMovie, setTopMovie] = useState();
+  const [runnersUp, setRunnersUp] = useState([]);
 
   useEffect(() => {
-    getTopFiveMovies('HB7O')
+    getTopFiveMovies(roomCode)
       .then((topFiveFilms) => {
-        setTopFive(topFiveFilms);
-        return getMovie('HB7O', String(topFiveFilms[0].id));
+        setRunnersUp(topFiveFilms.slice(1, 5));
+        return getMovie(roomCode, String(topFiveFilms[0].id));
       })
       .then((topMovie) => {
         setTopMovie(topMovie);
@@ -26,34 +28,33 @@ export const Result = () => {
   ) : (
     <View>
       <Text>Top Pick</Text>
-      <Text>{topFive[0].title}</Text>
+      <Text>{topMovie.title}</Text>
       <Image
         style={styles.tinyLogo}
         source={{
-          uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`,
+          uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`
         }}
       />
       <Text>Honourable mentions</Text>
-      <Text>{topFive[1].title}</Text>
-      <Text>{topFive[2].title}</Text>
-      <Text>{topFive[3].title}</Text>
-      <Text>{topFive[4].title}</Text>
+      {runnersUp.map((film) => {
+        return <Text key={film.id}>{film.title}</Text>;
+      })}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: 50
   },
   tinyLogo: {
     width: 50,
-    height: 50,
+    height: 50
   },
   logo: {
     width: 66,
-    height: 58,
-  },
+    height: 58
+  }
 });
 
 //if one or more of the movies has full votes, randomly choose one and render as top choice

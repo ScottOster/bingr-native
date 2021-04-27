@@ -13,7 +13,8 @@ export const Login = ({ navigation }) => {
         <TextInput
           onChangeText={setTrackName}
           value={trackName}
-          placeholder={'Enter name'}></TextInput>
+          placeholder={'Enter name'}
+        ></TextInput>
         <Button
           title="Host Game"
           onPress={() => {
@@ -23,8 +24,12 @@ export const Login = ({ navigation }) => {
         <TextInput
           onChangeText={() => {}}
           value={trackName}
-          placeholder={'Enter name as guest'}></TextInput>
-        <TextInput onChangeText={() => {}} placeholder={'Enter room-code'}></TextInput>
+          placeholder={'Enter name as guest'}
+        ></TextInput>
+        <TextInput
+          onChangeText={() => {}}
+          placeholder={'Enter room-code'}
+        ></TextInput>
         <Button
           title="Join game"
           onPress={() => {
@@ -38,17 +43,17 @@ export const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   loginPage: {
-    background: 'rgba(0, 0, 0, 0.3)',
-    paddingTop: '5px',
-    paddingBottom: '15px',
-    marginLeft: '10%',
-    marginRight: '10%',
-    marginTop: '10%',
-    borderRadius: '10px',
-    height: '50%',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    paddingTop: 5,
+    paddingBottom: 15,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    borderRadius: 10,
+    height: 50
   },
 
   body: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });
