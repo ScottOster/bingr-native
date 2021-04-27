@@ -29,7 +29,7 @@ export const WaitingRoom = ({ navigation, route }) => {
       <Button
         title="Get Bingin"
         onPress={() => {
-          navigation.navigate('MovieCard', { roomCode, trackName });
+          navigation.navigate('MovieCard', { roomCode, trackName, users });
         }}
       />
     </View>
