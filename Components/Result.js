@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import firebase from '../config';
 import { LinearGradient } from 'expo-linear-gradient';
+import firebase from '../config';
 import { getTopFiveMovies, getMovie } from '../firebase-api';
 
 export const Result = ({ navigation, route }) => {
@@ -41,31 +41,31 @@ export const Result = ({ navigation, route }) => {
     </View>
   ) : (
     <LinearGradient colors={['#b5e8f7', '#abffea']} style={styles.body}>
-    <View style={styles.backgroundContainer}>
-      <Image
-        style={styles.backgroundImage}
-        source={{
-          uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`,
-        }}
-      />
+      <View style={styles.backgroundContainer}>
+        <Image
+          style={styles.backgroundImage}
+          source={{
+            uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`,
+          }}
+        />
         <TouchableOpacity
           onPress={() => {
-          navigation.navigate('Login');
+            navigation.navigate('Login');
           }}
           style={styles.button}>
-        <LinearGradient
-              start={{ x: 0.0, y: 0.0 }}
-              end={{ x: 0.0, y: 0.0 }}
-              locations={[0.0, 0.74]}
-              colors={['#4ac6cd', '#49d695']}
-              style={styles.button}
-              useAngle={true}
-              angle={300}
-              angleCenter={{ x: 0.5, y: 0.5 }}>
-              <Text style={styles.buttonText}>Play Again</Text>
-            </LinearGradient>
-      </TouchableOpacity>
-    </View>
+          <LinearGradient
+            start={{ x: 0.0, y: 0.0 }}
+            end={{ x: 0.0, y: 0.0 }}
+            locations={[0.0, 0.74]}
+            colors={['#4ac6cd', '#49d695']}
+            style={styles.button}
+            useAngle={true}
+            angle={300}
+            angleCenter={{ x: 0.5, y: 0.5 }}>
+            <Text style={styles.buttonText}>Play Again</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
     </LinearGradient>
   );
 };
@@ -94,39 +94,36 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 20,
-    borderRadius: 20
+    borderRadius: 20,
   },
   title: {
     color: '#363636',
     fontSize: 30,
     margin: 10,
     marginTop: 20,
-    textAlign: 'center'
-
+    textAlign: 'center',
   },
   waiting: {
     color: '#363636',
     fontSize: 30,
     margin: 10,
     marginTop: 200,
-    textAlign: 'center'
-
+    textAlign: 'center',
   },
   honourableMentions: {
     color: '#666666',
     fontSize: 18,
     margin: 4,
     marginTop: 20,
-    textAlign: 'center'
-
+    textAlign: 'center',
   },
   text: {
     fontSize: 15,
     color: '#666666',
     textAlign: 'center',
-    margin: 2
+    margin: 2,
   },
-  
+
   button: {
     width: 270,
     height: 80,
@@ -145,6 +142,4 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#FFFFFF',
   },
-  
 });
-
