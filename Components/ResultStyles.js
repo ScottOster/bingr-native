@@ -1,54 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import firebase from '../config';
 import { LinearGradient } from 'expo-linear-gradient';
-import { getTopFiveMovies, getMovie } from '../firebase-api';
 
-export const Result = ({ navigation, route }) => {
-  const { roomCode, trackName, finalFilm, users } = route.params;
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [topMovie, setTopMovie] = useState();
-  const [runnersUp, setRunnersUp] = useState([]);
-
-  const changes = (totalPlayers) => {
-    firebase
-      .firestore()
-      .collection(roomCode)
-      .doc(String(finalFilm.id))
-      .onSnapshot((snapshot) => {
-        if (snapshot.data().tally >= totalPlayers) {
-          getTopFiveMovies(roomCode)
-            .then((topFiveFilms) => {
-              setRunnersUp(topFiveFilms.slice(1, 5));
-              return getMovie(roomCode, String(topFiveFilms[0].id));
-            })
-            .then((topMovie) => {
-              setTopMovie(topMovie);
-              setIsLoading(false);
-            });
-        }
-      });
-  };
-
-  useEffect(() => {
-    changes(users.length);
-  }, []);
-
-  return isLoading ? (
-    <View>
-      <Text style={styles.waiting}>Waiting for Players...</Text>
-    </View>
-  ) : (
+export const ResultStyles = () => {
+  
+  return  (
     <LinearGradient colors={['#b5e8f7', '#abffea']} style={styles.body}>
-    <View style={styles.backgroundContainer}>
-      <Image
-        style={styles.backgroundImage}
-        source={{
-          uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`,
-        }}
-      />
-        <TouchableOpacity
+        <View style={styles.backgroundContainer}>
+           <Image
+            style={styles.backgroundImage}
+            source={{
+            uri: `https://image.tmdb.org/t/p/w500/gCgt1WARPZaXnq523ySQEUKinCs.jpg`,
+           }}
+           />
+          <TouchableOpacity
           onPress={() => {
           navigation.navigate('Login');
           }}
@@ -67,7 +33,7 @@ export const Result = ({ navigation, route }) => {
       </TouchableOpacity>
     </View>
     </LinearGradient>
-  );
+    );
 };
 
 const styles = StyleSheet.create({
@@ -101,14 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     margin: 10,
     marginTop: 20,
-    textAlign: 'center'
-
-  },
-  waiting: {
-    color: '#363636',
-    fontSize: 30,
-    margin: 10,
-    marginTop: 200,
     textAlign: 'center'
 
   },
