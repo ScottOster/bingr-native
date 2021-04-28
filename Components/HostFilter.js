@@ -77,7 +77,6 @@ export const HostFilter = ({ navigation, route }) => {
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.fullBackground}>
       <View style={styles.backGround}>
-
         <View style={styles.filterBox}>
           {/* <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.greetingBackground}> */}
           <Text style={styles.greeting}>Hi Nate</Text>
@@ -217,13 +216,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
     margin: 6,
-
   },
 
   filterBox: {
-
     // backgroundColor: 'red',
-
   },
 
   greetingBackground: {
@@ -245,7 +241,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
     color: '#666666',
-
   },
 
   questionsBorder: {
@@ -272,12 +267,10 @@ const styles = StyleSheet.create({
     // backgroundColor: 'green',
     display: 'flex',
     alignItems: 'space-between',
-
   },
 
   switch: {
     // backgroundColor: 'purple',
-
   },
 
   text: {
@@ -310,5 +303,5 @@ const styles = StyleSheet.create({
     color: '#ff5050',
     marginTop: 40,
     textAlign: 'center',
-  }
+  },
 });
