@@ -27,15 +27,12 @@ export const WaitingRoom = ({ navigation, route }) => {
       {users.map((user) => {
         return <Text key={user}>{user}</Text>;
       })}
-
-      {isHost && (
-        <Button
-          title='Get Bingin'
-          onPress={() => {
-            navigation.navigate('MovieCard', { roomCode, trackName, users });
-          }}
-        />
-      )}
+      <Button
+        title="Get Bingin"
+        onPress={() => {
+          navigation.navigate('MovieCard', { roomCode, trackName, users });
+        }}
+      />
     </View>
   );
 };
