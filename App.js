@@ -6,6 +6,7 @@ import { Login } from './Components/Login';
 import { HostFilter } from './Components/HostFilter';
 import { MovieCard } from './Components/MovieCard';
 import { WaitingRoom } from './Components/WaitingRoom';
+import {MovieCardStyles} from './Components/MovieCardStyles'
 import { Result } from './Components/Result';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login}></Stack.Screen>
         <Stack.Screen name="HostFilter" component={HostFilter}></Stack.Screen>
         <Stack.Screen name="WaitingRoom" component={WaitingRoom}></Stack.Screen>
+        <Stack.Screen name="MovieCardStyles" component={MovieCardStyles}></Stack.Screen>
         <Stack.Screen name="MovieCard" component={MovieCard}></Stack.Screen>
         <Stack.Screen name="Result" component={Result}></Stack.Screen>
       </Stack.Navigator>
