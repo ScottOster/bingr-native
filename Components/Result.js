@@ -4,7 +4,7 @@ import firebase from '../config';
 import { getTopFiveMovies, getMovie } from '../firebase-api';
 
 export const Result = ({ navigation, route }) => {
-  const { roomCode, trackName, currentFilm } = route.params;
+  const { roomCode, trackName, finalFilm, users } = route.params;
 
   const [isLoading, setIsLoading] = useState(true);
   const [topMovie, setTopMovie] = useState();
@@ -14,7 +14,7 @@ export const Result = ({ navigation, route }) => {
     firebase
       .firestore()
       .collection(roomCode)
-      .doc(String(currentFilm.id))
+      .doc(String(finalFilm.id))
       .onSnapshot((snapshot) => {
         if (snapshot.data().tally >= totalPlayers) {
           getTopFiveMovies(roomCode)
@@ -31,7 +31,7 @@ export const Result = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    changes(1);
+    changes(users.length);
   }, []);
 
   return isLoading ? (

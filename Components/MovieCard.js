@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
-import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
+import {
+  updateVotesTally,
+  getMovieByPosition,
+  updateVotesCount,
+} from '../firebase-api';
 
 export const MovieCard = ({ navigation, route }) => {
-  const { roomCode, trackName } = route.params;
+  const { roomCode, trackName, users } = route.params;
 
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
   const [disabledBtn, setDisabledBtn] = useState(false);
+  const [finalFilm, setFinalFilm] = useState({});
 
   const incrementCounter = () => {
     console.log(counter);
@@ -17,7 +22,12 @@ export const MovieCard = ({ navigation, route }) => {
         return newState + 1;
       });
     } else {
-      navigation.navigate('Result', { roomCode, trackName, currentFilm });
+      navigation.navigate('Result', {
+        roomCode,
+        trackName,
+        users,
+        finalFilm,
+      });
     }
   };
 
@@ -27,6 +37,12 @@ export const MovieCard = ({ navigation, route }) => {
       setDisabledBtn(false);
     });
   }, [counter]);
+
+  useEffect(() => {
+    getMovieByPosition(roomCode, 19).then((finalFilm) => {
+      setFinalFilm(finalFilm);
+    });
+  }, []);
 
   const { title, vote_average, overview, poster_path, id } = currentFilm;
 
@@ -40,7 +56,7 @@ export const MovieCard = ({ navigation, route }) => {
         source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
       />
       <Button
-        title="cringr"
+        title='cringr'
         disabled={disabledBtn}
         onPress={() => {
           incrementCounter();
@@ -49,7 +65,7 @@ export const MovieCard = ({ navigation, route }) => {
         }}
       />
       <Button
-        title="bingr"
+        title='bingr'
         disabled={disabledBtn}
         onPress={() => {
           incrementCounter();

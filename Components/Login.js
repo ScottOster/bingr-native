@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { TouchableOpacity, StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import logo from '../logo.png';
+import { addUserToRoom } from '../firebase-api';
 
 export const Login = ({ navigation }) => {
   const [trackName, setTrackName] = useState('');
+  const [userRoomCode, setUserRoomCode] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
 
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
@@ -42,20 +45,28 @@ export const Login = ({ navigation }) => {
 
           <TextInput
             style={styles.textInput}
-            onChangeText={() => {}}
+            onChangeText={setTrackName}
             value={trackName}
             placeholder={'Enter guest name'}
             placeholderTextColor={'#f9f9f9'}></TextInput>
           <TextInput
             style={styles.textInput}
-            onChangeText={() => {
-              
-            }}
+            onChangeText={setUserRoomCode}
+            value={userRoomCode}
             placeholder={'Room Code'}
             placeholderTextColor={'#f9f9f9'}></TextInput>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('HostFilter');
+              addUserToRoom(userRoomCode, trackName).then((res) => {
+                if (res) {
+                  navigation.navigate('WaitingRoom', {
+                    trackName,
+                    roomCode: userRoomCode,
+                  });
+                } else {
+                  setErrorMessage(true);
+                }
+              });
             }}
             style={styles.button}>
             <LinearGradient
@@ -71,6 +82,11 @@ export const Login = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
+        {errorMessage && (
+          <View>
+            <Text>Invalid room</Text>
+          </View>
+        )}
       </View>
       <View style={styles.devs}>
         <Text style={styles.dev}>Deveoloped by:</Text>

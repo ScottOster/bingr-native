@@ -47,3 +47,26 @@ export const updateVotesTally = (roomCode, movieId) => {
 export const createUserRoom = (roomCode, hostName) => {
   db.collection(`${roomCode}users`).doc(hostName).set({ name: hostName });
 };
+
+export const addUserToRoom = async (roomCode, userName) => {
+  const snapshot = await db.collection(roomCode).get();
+  if (snapshot.empty) {
+    return false;
+  } else {
+    db.collection(`${roomCode}users`).doc(userName).set({ name: userName });
+    return true;
+  }
+};
+
+export const getUsersByRoomCode = async (roomCode) => {
+  const snapshot = await db.collection(`${roomCode}users`).get();
+  if (snapshot.empty) {
+    console.log('no users in this collection');
+  } else {
+    const users = [];
+    snapshot.forEach((user) => {
+      users.push(user.data());
+    });
+    return users;
+  }
+};
