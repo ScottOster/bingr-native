@@ -36,11 +36,13 @@ export const MovieCard = ({ navigation, route }) => {
       setCurrentFilm(movie);
       setDisabledBtn(false);
     });
+  }, [counter]);
 
+  useEffect(() => {
     getMovieByPosition(roomCode, 19).then((finalFilm) => {
       setFinalFilm(finalFilm);
     });
-  }, [counter]);
+  }, []);
 
   const { title, vote_average, overview, poster_path, id } = currentFilm;
 
