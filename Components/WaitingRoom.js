@@ -23,11 +23,12 @@ export const WaitingRoom = ({ navigation, route }) => {
 
   return (
     <View>
+      <Text>{roomCode} waiting room</Text>
       {users.map((user) => {
         return <Text key={user}>{user}</Text>;
       })}
       <Button
-        title="Get Bingin"
+        title='Get Bingin'
         onPress={() => {
           navigation.navigate('MovieCard', { roomCode, trackName, users });
         }}
