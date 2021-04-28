@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import {
   updateVotesTally,
   getMovieByPosition,
-  updateVotesCount
+  updateVotesCount,
 } from '../firebase-api';
 
 export const MovieCard = ({ navigation, route }) => {
@@ -12,6 +12,7 @@ export const MovieCard = ({ navigation, route }) => {
   const [currentFilm, setCurrentFilm] = useState({});
   const [counter, setCounter] = useState(0);
   const [disabledBtn, setDisabledBtn] = useState(false);
+  const [finalFilm, setFinalFilm] = useState({});
 
   const incrementCounter = () => {
     console.log(counter);
@@ -24,8 +25,8 @@ export const MovieCard = ({ navigation, route }) => {
       navigation.navigate('Result', {
         roomCode,
         trackName,
-        currentFilm,
-        users
+        users,
+        finalFilm,
       });
     }
   };
@@ -34,6 +35,10 @@ export const MovieCard = ({ navigation, route }) => {
     getMovieByPosition(roomCode, counter).then((movie) => {
       setCurrentFilm(movie);
       setDisabledBtn(false);
+    });
+
+    getMovieByPosition(roomCode, 19).then((finalFilm) => {
+      setFinalFilm(finalFilm);
     });
   }, [counter]);
 
@@ -49,7 +54,7 @@ export const MovieCard = ({ navigation, route }) => {
         source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
       />
       <Button
-        title="cringr"
+        title='cringr'
         disabled={disabledBtn}
         onPress={() => {
           incrementCounter();
@@ -58,7 +63,7 @@ export const MovieCard = ({ navigation, route }) => {
         }}
       />
       <Button
-        title="bingr"
+        title='bingr'
         disabled={disabledBtn}
         onPress={() => {
           incrementCounter();
@@ -73,14 +78,14 @@ export const MovieCard = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50
+    paddingTop: 50,
   },
   tinyLogo: {
     width: 50,
-    height: 50
+    height: 50,
   },
   logo: {
     width: 66,
-    height: 58
-  }
+    height: 58,
+  },
 });
