@@ -13,36 +13,40 @@ export const MovieCardStyles = () => {
         />
       </View>
       <LinearGradient colors={['transparent', '#000000']} style={styles.fullBackground}>
-        <View style = {styles.info}>
+        <View style={styles.info}>
           <Text style={styles.title}>Castle in the Sky</Text>
           <Text style={styles.title}>7.9</Text>
-          <Text style = {styles.description}>
+          <Text style={styles.description}>
             A young boy and a girl with a magic crystal must race against pirates and foreign agents
             in a search for a legendary floating castle."
           </Text>
           <View style={styles.bothButtons}>
-          <TouchableOpacity style={styles.button} title="cringr" ><LinearGradient
-            start={{ x: 0.0, y: 0.0 }}
-            end={{ x: 0.0, y: 0.0 }}
-            locations={[0.0, 0.74]}
-            colors={['#ff5050', '#d4815d']}
-            style={styles.button}
-            useAngle={true}
-            angle={300}
-            angleCenter={{ x: 0.5, y: 0.5 }}>
-            <Text style={styles.buttonText}>Cringr</Text>
-          </LinearGradient></TouchableOpacity>
-          <TouchableOpacity style={styles.button} title="bingr" ><LinearGradient
-            start={{ x: 0.0, y: 0.0 }}
-            end={{ x: 0.0, y: 0.0 }}
-            locations={[0.0, 0.74]}
-            colors={['#4ac6cd', '#49d695']}
-            style={styles.button}
-            useAngle={true}
-            angle={300}
-            angleCenter={{ x: 0.5, y: 0.5 }}>
-            <Text style={styles.buttonText}>Bingr</Text>
-          </LinearGradient></TouchableOpacity>
+            <TouchableOpacity style={styles.button} title="cringr">
+              <LinearGradient
+                start={{ x: 0.0, y: 0.0 }}
+                end={{ x: 0.0, y: 0.0 }}
+                locations={[0.0, 0.74]}
+                colors={['#ff5050', '#d4815d']}
+                style={styles.button}
+                useAngle={true}
+                angle={300}
+                angleCenter={{ x: 0.5, y: 0.5 }}>
+                <Text style={styles.buttonText}>Cringr</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} title="bingr">
+              <LinearGradient
+                start={{ x: 0.0, y: 0.0 }}
+                end={{ x: 0.0, y: 0.0 }}
+                locations={[0.0, 0.74]}
+                colors={['#4ac6cd', '#49d695']}
+                style={styles.button}
+                useAngle={true}
+                angle={300}
+                angleCenter={{ x: 0.5, y: 0.5 }}>
+                <Text style={styles.buttonText}>Bingr</Text>
+              </LinearGradient>
+            </TouchableOpacity>
           </View>
         </View>
       </LinearGradient>
@@ -73,21 +77,20 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
   },
-  info:{
+  info: {
     flex: 1,
-  justifyContent: 'flex-end',
+    justifyContent: 'flex-end',
   },
-  title:{
+  title: {
     color: '#FFFFFF',
     fontSize: 20,
     margin: 10,
-    marginBottom: 0
-    
+    marginBottom: 0,
   },
-  description:{
+  description: {
     color: '#FFFFFF',
     margin: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   button: {
     width: 140,
@@ -105,9 +108,9 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#FFFFFF',
   },
-  bothButtons:{
+  bothButtons: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-  }
-})
+  },
+});

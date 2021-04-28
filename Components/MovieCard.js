@@ -47,66 +47,64 @@ export const MovieCard = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
-      <Image
-         style={styles.backgroundImage}
-        source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
+        <Image
+          style={styles.backgroundImage}
+          source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
         />
       </View>
       <LinearGradient colors={['transparent', '#000000']} style={styles.fullBackground}>
-      <View style = {styles.info}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.title}>Rating: {vote_average}</Text>
-      <Text style = {styles.description}>{overview}</Text>
-      <View style={styles.bothButtons}>
-      <TouchableOpacity
-      style={styles.button}
-        title="cringr"
-        disabled={disabledBtn}
-        onPress={() => {
-          incrementCounter();
-          updateVotesTally(roomCode, String(id));
-          setDisabledBtn(true);
-        }}
-        >
-          <LinearGradient
-            start={{ x: 0.0, y: 0.0 }}
-            end={{ x: 0.0, y: 0.0 }}
-            locations={[0.0, 0.74]}
-            colors={['#ff5050', '#d4815d']}
-            style={styles.button}
-            useAngle={true}
-            angle={300}
-            angleCenter={{ x: 0.5, y: 0.5 }}>
-            <Text style={styles.buttonText}>Cringr</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      <TouchableOpacity
-      style={styles.button}
-        title="bingr"
-        disabled={disabledBtn}
-        onPress={() => {
-          incrementCounter();
-          updateVotesTally(roomCode, String(id));
-          updateVotesCount(roomCode, String(id));
-          setDisabledBtn(true);
-        }}
-        >
-          <LinearGradient
-            start={{ x: 0.0, y: 0.0 }}
-            end={{ x: 0.0, y: 0.0 }}
-            locations={[0.0, 0.74]}
-            colors={['#4ac6cd', '#49d695']}
-            style={styles.button}
-            useAngle={true}
-            angle={300}
-            angleCenter={{ x: 0.5, y: 0.5 }}>
-            <Text style={styles.buttonText}>Bingr</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+        <View style={styles.info}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>Rating: {vote_average}</Text>
+          <Text style={styles.description}>{overview}</Text>
+          <View style={styles.bothButtons}>
+            <TouchableOpacity
+              style={styles.button}
+              title="cringr"
+              disabled={disabledBtn}
+              onPress={() => {
+                incrementCounter();
+                updateVotesTally(roomCode, String(id));
+                setDisabledBtn(true);
+              }}>
+              <LinearGradient
+                start={{ x: 0.0, y: 0.0 }}
+                end={{ x: 0.0, y: 0.0 }}
+                locations={[0.0, 0.74]}
+                colors={['#ff5050', '#d4815d']}
+                style={styles.button}
+                useAngle={true}
+                angle={300}
+                angleCenter={{ x: 0.5, y: 0.5 }}>
+                <Text style={styles.buttonText}>Cringr</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              title="bingr"
+              disabled={disabledBtn}
+              onPress={() => {
+                incrementCounter();
+                updateVotesTally(roomCode, String(id));
+                updateVotesCount(roomCode, String(id));
+                setDisabledBtn(true);
+              }}>
+              <LinearGradient
+                start={{ x: 0.0, y: 0.0 }}
+                end={{ x: 0.0, y: 0.0 }}
+                locations={[0.0, 0.74]}
+                colors={['#4ac6cd', '#49d695']}
+                style={styles.button}
+                useAngle={true}
+                angle={300}
+                angleCenter={{ x: 0.5, y: 0.5 }}>
+                <Text style={styles.buttonText}>Bingr</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
         </View>
-        </View>
-        </LinearGradient>
-  </View>
+      </LinearGradient>
+    </View>
   );
 };
 
@@ -133,21 +131,20 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
   },
-  info:{
+  info: {
     flex: 1,
-  justifyContent: 'flex-end',
+    justifyContent: 'flex-end',
   },
-  title:{
+  title: {
     color: '#FFFFFF',
     fontSize: 20,
     margin: 10,
-    marginBottom: 0
-    
+    marginBottom: 0,
   },
-  description:{
+  description: {
     color: '#FFFFFF',
     margin: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   button: {
     width: 140,
@@ -165,9 +162,9 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#FFFFFF',
   },
-  bothButtons:{
+  bothButtons: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-  }
-})
+  },
+});
