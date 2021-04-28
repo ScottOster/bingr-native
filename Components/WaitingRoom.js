@@ -4,7 +4,7 @@ import { getUsersByRoomCode } from '../firebase-api';
 import firebase from '../config';
 
 export const WaitingRoom = ({ navigation, route }) => {
-  const { roomCode, trackName } = route.params;
+  const { roomCode, trackName, isHost } = route.params;
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -27,12 +27,15 @@ export const WaitingRoom = ({ navigation, route }) => {
       {users.map((user) => {
         return <Text key={user}>{user}</Text>;
       })}
-      <Button
-        title="Get Bingin"
-        onPress={() => {
-          navigation.navigate('MovieCard', { roomCode, trackName, users });
-        }}
-      />
+
+      {isHost && (
+        <Button
+          title='Get Bingin'
+          onPress={() => {
+            navigation.navigate('MovieCard', { roomCode, trackName, users });
+          }}
+        />
+      )}
     </View>
   );
 };

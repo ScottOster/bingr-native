@@ -37,15 +37,33 @@ export const getTopFiveMovies = async (roomCode) => {
 const increment = firebase.firestore.FieldValue.increment(1);
 
 export const updateVotesCount = (roomCode, movieId) => {
-  db.collection(roomCode).doc(movieId).update({ increment_votes: increment });
+  return db
+    .collection(roomCode)
+    .doc(movieId)
+    .update({ increment_votes: increment })
+    .then(() => {
+      console.log('doc updated');
+    });
 };
 
 export const updateVotesTally = (roomCode, movieId) => {
-  db.collection(roomCode).doc(movieId).update({ tally: increment });
+  return db
+    .collection(roomCode)
+    .doc(movieId)
+    .update({ tally: increment })
+    .then(() => {
+      console.log('doc updated');
+    });
 };
 
 export const createUserRoom = (roomCode, hostName) => {
-  db.collection(`${roomCode}users`).doc(hostName).set({ name: hostName });
+  return db
+    .collection(`${roomCode}users`)
+    .doc(hostName)
+    .set({ name: hostName })
+    .then(() => {
+      console.log('user room created');
+    });
 };
 
 export const addUserToRoom = async (roomCode, userName) => {

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
-import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
+import {
+  updateVotesTally,
+  getMovieByPosition,
+  updateVotesCount,
+} from '../firebase-api';
 
 export const MovieCard = ({ navigation, route }) => {
   const { roomCode, trackName, users } = route.params;
@@ -52,22 +56,35 @@ export const MovieCard = ({ navigation, route }) => {
         source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
       />
       <Button
-        title="cringr"
+        title='cringr'
         disabled={disabledBtn}
         onPress={() => {
-          incrementCounter();
-          updateVotesTally(roomCode, String(id));
           setDisabledBtn(true);
+          updateVotesTally(roomCode, String(id))
+            .then(() => {
+              incrementCounter();
+            })
+            .catch((error) => {
+              setDisabledBtn(false);
+              console.dir(error);
+            });
         }}
       />
       <Button
-        title="bingr"
+        title='bingr'
         disabled={disabledBtn}
         onPress={() => {
-          incrementCounter();
-          updateVotesTally(roomCode, String(id));
-          updateVotesCount(roomCode, String(id));
           setDisabledBtn(true);
+          updateVotesTally(roomCode, String(id))
+            .then(() => {
+              updateVotesCount(roomCode, String(id)).then(() => {
+                incrementCounter();
+              });
+            })
+            .catch((error) => {
+              setDisabledBtn(false);
+              console.dir(error);
+            });
         }}
       />
     </View>
