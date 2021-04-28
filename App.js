@@ -6,7 +6,7 @@ import { Login } from './Components/Login';
 import { HostFilter } from './Components/HostFilter';
 import { MovieCard } from './Components/MovieCard';
 import { WaitingRoom } from './Components/WaitingRoom';
-import {MovieCardStyles} from './Components/MovieCardStyles'
+import { MovieCardStyles } from './Components/MovieCardStyles';
 import { Result } from './Components/Result';
 
 export default function App() {

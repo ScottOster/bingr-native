@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
     margin: 6,
-    borderRadius: 20
+    borderRadius: 20,
   },
 
   filterBox: {
