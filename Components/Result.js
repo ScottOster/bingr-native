@@ -31,9 +31,9 @@ export const Result = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    updateUserProgress(roomCode, trackName).then(()=> {
-      console.log('has been updated')
-    })
+    updateUserProgress(roomCode, trackName).then(() => {
+      console.log('has been updated');
+    });
     changes(users.length);
   }, []);
 

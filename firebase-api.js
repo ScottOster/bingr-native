@@ -37,10 +37,7 @@ export const getTopFiveMovies = async (roomCode) => {
 const increment = firebase.firestore.FieldValue.increment(1);
 
 export const updateVotesCount = async (roomCode, movieId) => {
-  await db
-    .collection(roomCode)
-    .doc(movieId)
-    .update({ increment_votes: increment });
+  await db.collection(roomCode).doc(movieId).update({ increment_votes: increment });
 };
 
 export const updateVotesTally = async (roomCode, movieId) => {
@@ -52,18 +49,15 @@ export const createUserRoom = (roomCode, hostName) => {
 };
 
 export const updateUserProgress = async (roomCode, userName) => {
-  await db
-    .collection(`${roomCode}users`)
-    .doc(userName)
-    .update({ isFinished: true });
+  await db.collection(`${roomCode}users`).doc(userName).update({ isFinished: true });
 };
 
 export const checkUserProgress = async (roomCode) => {
   const snapshot = await db.collection(`${roomCode}users`).get();
-  let truthy = false
+  let truthy = false;
   snapshot.forEach((user) => {
     if (user.data().isFinished) {
-      truthy = true
+      truthy = true;
     }
   });
   return truthy;
