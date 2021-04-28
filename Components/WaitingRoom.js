@@ -28,7 +28,7 @@ export const WaitingRoom = ({ navigation, route }) => {
         return <Text key={user}>{user}</Text>;
       })}
       <Button
-        title='Get Bingin'
+        title="Get Bingin"
         onPress={() => {
           navigation.navigate('MovieCard', { roomCode, trackName, users });
         }}
