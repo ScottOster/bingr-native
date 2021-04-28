@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, StyleSheet, Button, Switch, View, Text } from 'react-native';
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Button,
+  Switch,
+  View,
+  Text,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { codeGenerator } from '../codeGenerator';
 import { initiateMovieList } from '../movieList';
@@ -18,6 +25,7 @@ export const HostFilter = ({ navigation, route }) => {
   const [providers, setProviders] = useState([]);
   const [genres, setGenres] = useState([]);
   const [roomCode, setRoomCode] = useState('');
+  const [creatingGame, setGameBeingCreated] = useState(false);
 
   useEffect(() => {
     const code = codeGenerator();
@@ -75,7 +83,10 @@ export const HostFilter = ({ navigation, route }) => {
   };
 
   return (
-    <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.fullBackground}>
+    <LinearGradient
+      colors={['#4ac6cd', '#49d695']}
+      style={styles.fullBackground}
+    >
       <View style={styles.backGround}>
         <View style={styles.filterBox}>
           {/* <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.greetingBackground}> */}
@@ -89,11 +100,11 @@ export const HostFilter = ({ navigation, route }) => {
               <Text style={styles.text}>Netlix</Text>
               <Switch
                 style={styles.switch}
-                className="setProviders"
-                id=""
+                className='setProviders'
+                id=''
                 trackColor={{ false: '#767577', true: '#4ac6cd' }}
                 thumbColor={netflix ? '#4ac6cd' : '#4ac6cd'}
-                ios_backgroundColor="#3e3e3e"
+                ios_backgroundColor='#3e3e3e'
                 onValueChange={() => toggleSwitch(8)}
                 value={netflix}
               />
@@ -102,10 +113,10 @@ export const HostFilter = ({ navigation, route }) => {
               <Text style={styles.text}>Amazon</Text>
               <Switch
                 style={styles.switch}
-                className="setProviders"
+                className='setProviders'
                 trackColor={{ false: '#767577', true: '#4ac6cd' }}
                 thumbColor={amazon ? '#4ac6cd' : '#4ac6cd'}
-                ios_backgroundColor="#3e3e3e"
+                ios_backgroundColor='#3e3e3e'
                 onValueChange={() => toggleSwitch(9)}
                 value={amazon}
               />
@@ -114,10 +125,10 @@ export const HostFilter = ({ navigation, route }) => {
               <Text style={styles.text}>Disney</Text>
               <Switch
                 style={styles.switch}
-                className="setProviders"
+                className='setProviders'
                 trackColor={{ false: '#767577', true: '#4ac6cd' }}
                 thumbColor={disney ? '#4ac6cd' : '#4ac6cd'}
-                ios_backgroundColor="#3e3e3e"
+                ios_backgroundColor='#3e3e3e'
                 onValueChange={() => toggleSwitch(337)}
                 value={disney}
               />
@@ -130,10 +141,10 @@ export const HostFilter = ({ navigation, route }) => {
             <Text style={styles.text}>Action</Text>
             <Switch
               style={styles.switch}
-              className="setGenres"
+              className='setGenres'
               trackColor={{ false: '#767577', true: '#4ac6cd' }}
               thumbColor={action ? '#4ac6cd' : '#4ac6cd'}
-              ios_backgroundColor="#3e3e3e"
+              ios_backgroundColor='#3e3e3e'
               onValueChange={() => toggleSwitch(28)}
               value={action}
             />
@@ -142,10 +153,10 @@ export const HostFilter = ({ navigation, route }) => {
             <Text style={styles.text}>Comedy</Text>
             <Switch
               style={styles.switch}
-              className="setGenres"
+              className='setGenres'
               trackColor={{ false: '#767577', true: '#4ac6cd' }}
               thumbColor={comedy ? '#4ac6cd' : '#4ac6cd'}
-              ios_backgroundColor="#3e3e3e"
+              ios_backgroundColor='#3e3e3e'
               onValueChange={() => toggleSwitch(35)}
               value={comedy}
             />
@@ -154,10 +165,10 @@ export const HostFilter = ({ navigation, route }) => {
             <Text style={styles.text}>Fantasy</Text>
             <Switch
               style={styles.switch}
-              className="setGenres"
+              className='setGenres'
               trackColor={{ false: '#767577', true: '#4ac6cd' }}
               thumbColor={fantasy ? '#4ac6cd' : '#4ac6cd'}
-              ios_backgroundColor="#3e3e3e"
+              ios_backgroundColor='#3e3e3e'
               onValueChange={() => toggleSwitch(14)}
               value={fantasy}
             />
@@ -166,30 +177,44 @@ export const HostFilter = ({ navigation, route }) => {
             <Text style={styles.text}>Horror</Text>
             <Switch
               style={styles.switch}
-              className="setGenres"
+              className='setGenres'
               trackColor={{ false: '#767577', true: '#4ac6cd' }}
               thumbColor={horror ? '#4ac6cd' : '#4ac6cd'}
-              ios_backgroundColor="#3e3e3e"
+              ios_backgroundColor='#3e3e3e'
               onValueChange={() => toggleSwitch(27)}
               value={horror}
             />
           </View>
+
           {providers.length && genres.length ? (
             <TouchableOpacity
+              disabled={creatingGame}
               onPress={() => {
-                initiateMovieList(providers, genres).then((movies) => {
-                  const finalMovies = movies.slice(0, 20);
-                  createGameRoom(roomCode, finalMovies);
-                  createUserRoom(roomCode, trackName);
-                  console.log('movies added to DB');
-                  navigation.navigate('WaitingRoom', {
-                    roomCode,
-                    trackName,
-                    isHost,
+                setGameBeingCreated(true);
+                initiateMovieList(providers, genres)
+                  .then((movies) => {
+                    const finalMovies = movies.slice(0, 20);
+                    return createGameRoom(roomCode, finalMovies);
+                  })
+                  .then(() => {
+                    return createUserRoom(roomCode, trackName);
+                  })
+                  .then(() => {
+                    console.log('movies added to DB');
+                    navigation.navigate('WaitingRoom', {
+                      roomCode,
+                      trackName,
+                      isHost,
+                    });
+                  })
+                  .catch((error) => {
+                    console.dir(error);
                   });
-                });
               }}
-              style={styles.button}>
+              style={styles.button}
+            >
+              {creatingGame && <Text> creating game room...</Text>}
+
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
@@ -198,12 +223,15 @@ export const HostFilter = ({ navigation, route }) => {
                 style={styles.button}
                 useAngle={true}
                 angle={100}
-                angleCenter={{ x: 0.5, y: 0.5 }}>
+                angleCenter={{ x: 0.5, y: 0.5 }}
+              >
                 <Text style={styles.buttonText}>START</Text>
               </LinearGradient>
             </TouchableOpacity>
           ) : (
-            <Text style={styles.warningMsg}>Please select atleast one provider and genre</Text>
+            <Text style={styles.warningMsg}>
+              Please select atleast one provider and genre
+            </Text>
           )}
         </View>
       </View>
