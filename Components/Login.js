@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Button,
-  View,
-  Text,
-  Image,
-  TextInput
-} from 'react-native';
+import { TouchableOpacity, StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import logo from '../logo.png';
 import {
   addUserToRoom,
   checkUserProgress,
   getUsersByRoomCode,
-  joinRoomErrorChecker
+  joinRoomErrorChecker,
 } from '../firebase-api';
 
 export const Login = ({ navigation }) => {
@@ -38,20 +30,16 @@ export const Login = ({ navigation }) => {
             onChangeText={setTrackName}
             value={trackName}
             placeholder={'Enter name'}
-            placeholderTextColor={'#f9f9f9'}
-          ></TextInput>
+            placeholderTextColor={'#f9f9f9'}></TextInput>
 
-          {trackName.length < 2 && (
-            <Text>Name must be longer than two characters</Text>
-          )}
+          {trackName.length < 2 && <Text>Name must be longer than two characters</Text>}
 
           <TouchableOpacity
             disabled={trackName.length < 2}
             onPress={() => {
               navigation.navigate('HostFilter', { trackName, isHost: true });
             }}
-            style={styles.button}
-          >
+            style={styles.button}>
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
@@ -60,8 +48,7 @@ export const Login = ({ navigation }) => {
               style={styles.button}
               useAngle={true}
               angle={100}
-              angleCenter={{ x: 0.5, y: 0.5 }}
-            >
+              angleCenter={{ x: 0.5, y: 0.5 }}>
               <Text style={styles.buttonText}>HOST GAME</Text>
             </LinearGradient>
           </TouchableOpacity>
@@ -73,30 +60,26 @@ export const Login = ({ navigation }) => {
             onChangeText={setUserRoomCode}
             value={userRoomCode}
             placeholder={'Enter 4 digit room code'}
-            placeholderTextColor={'#f9f9f9'}
-          ></TextInput>
+            placeholderTextColor={'#f9f9f9'}></TextInput>
           <TouchableOpacity
             disabled={userRoomCode.length < 4}
             onPress={() => {
               const capitalizedRoomCode = userRoomCode.toUpperCase();
-              joinRoomErrorChecker(capitalizedRoomCode, trackName).then(
-                (res) => {
-                  setRoomExists(res[0]);
-                  setUserExists(res[1]);
-                  setSomeonesFinished(res[2]);
-                  if (res.every((status) => status === false)) {
-                    addUserToRoom(capitalizedRoomCode, trackName).then(() => {
-                      navigation.navigate('WaitingRoom', {
-                        trackName,
-                        roomCode: capitalizedRoomCode
-                      });
+              joinRoomErrorChecker(capitalizedRoomCode, trackName).then((res) => {
+                setRoomExists(res[0]);
+                setUserExists(res[1]);
+                setSomeonesFinished(res[2]);
+                if (res.every((status) => status === false)) {
+                  addUserToRoom(capitalizedRoomCode, trackName).then(() => {
+                    navigation.navigate('WaitingRoom', {
+                      trackName,
+                      roomCode: capitalizedRoomCode,
                     });
-                  }
+                  });
                 }
-              );
+              });
             }}
-            style={styles.button}
-          >
+            style={styles.button}>
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
@@ -105,8 +88,7 @@ export const Login = ({ navigation }) => {
               style={styles.button}
               useAngle={true}
               angle={300}
-              angleCenter={{ x: 0.5, y: 0.5 }}
-            >
+              angleCenter={{ x: 0.5, y: 0.5 }}>
               <Text style={styles.buttonText}>JOIN GAME</Text>
             </LinearGradient>
           </TouchableOpacity>
@@ -131,8 +113,7 @@ export const Login = ({ navigation }) => {
         onPress={() => {
           navigation.navigate('ResultStyles');
         }}
-        style={styles.button}
-      >
+        style={styles.button}>
         <Text style={styles.buttonText}>HOST GAME</Text>
       </TouchableOpacity>
       <View style={styles.devs}>
@@ -156,10 +137,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     height: 1,
-    flex: 1
+    flex: 1,
   },
   body: {
-    flex: 1
+    flex: 1,
   },
   loginLogo: {
     height: 130,
@@ -171,14 +152,14 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     // width: '50%',
     marginTop: 5,
-    marginBottom: 50
+    marginBottom: 50,
   },
   login: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     marginLeft: 40,
-    marginRight: 40
+    marginRight: 40,
   },
   textInput: {
     // opacity: '0.1',
@@ -186,7 +167,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#F9F9F9',
     borderBottomWidth: 1,
     padding: 5,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   button: {
     width: 120,
@@ -197,27 +178,27 @@ const styles = StyleSheet.create({
     marginTop: 5,
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 10
+    borderRadius: 10,
     // backgroundColor: '#2C3E50',
   },
   buttonText: {
     fontSize: 14,
     textAlign: 'center',
     margin: 10,
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
   or: {
     color: '#F9F9F9',
     textAlign: 'center',
-    margin: 10
+    margin: 10,
   },
   devs: {
     textAlign: 'center',
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 10,
   },
   dev: {
     fontSize: 10,
-    color: '#F9F9F9'
-  }
+    color: '#F9F9F9',
+  },
 });

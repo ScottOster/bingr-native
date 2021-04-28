@@ -10,7 +10,7 @@ export const WaitingRoom = ({ navigation, route }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    firebase
+    const unsub = firebase
       .firestore()
       .collection(`${roomCode}users`)
       .onSnapshot((snapshot) => {
@@ -20,6 +20,7 @@ export const WaitingRoom = ({ navigation, route }) => {
           usersOnFb.push(doc.data().name);
         });
         setUsers(usersOnFb);
+        unsub();
       });
   }, []);
 
