@@ -18,7 +18,7 @@ export const MovieCardStyles = () => {
           <Text style={styles.title}>7.9</Text>
           <Text style={styles.description}>
             A young boy and a girl with a magic crystal must race against pirates and foreign agents
-            in a search for a legendary floating castle."
+            in a search for a legendary floating castle.
           </Text>
           <View style={styles.bothButtons}>
             <TouchableOpacity style={styles.button} title="cringr">

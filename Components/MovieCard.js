@@ -62,18 +62,17 @@ export const MovieCard = ({ navigation, route }) => {
               style={styles.button}
               title="cringr"
               disabled={disabledBtn}
-            
-        onPress={() => {
-          setDisabledBtn(true);
-          updateVotesTally(roomCode, String(id))
-            .then(() => {
-                incrementCounter();
-            })
-            .catch((error) => {
-              setDisabledBtn(false);
-              console.dir(error);
-            });
-        }}>
+              onPress={() => {
+                setDisabledBtn(true);
+                updateVotesTally(roomCode, String(id))
+                  .then(() => {
+                    incrementCounter();
+                  })
+                  .catch((error) => {
+                    setDisabledBtn(false);
+                    console.dir(error);
+                  });
+              }}>
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
@@ -90,19 +89,19 @@ export const MovieCard = ({ navigation, route }) => {
               style={styles.button}
               title="bingr"
               disabled={disabledBtn}
-        onPress={() => {
-          setDisabledBtn(true);
-          updateVotesTally(roomCode, String(id))
-            .then(() => {
-              updateVotesCount(roomCode, String(id)).then(() => {
-                incrementCounter();
-              });
-            })
-            .catch((error) => {
-              setDisabledBtn(false);
-              console.dir(error);
-            });
-        }}>
+              onPress={() => {
+                setDisabledBtn(true);
+                updateVotesTally(roomCode, String(id))
+                  .then(() => {
+                    updateVotesCount(roomCode, String(id)).then(() => {
+                      incrementCounter();
+                    });
+                  })
+                  .catch((error) => {
+                    setDisabledBtn(false);
+                    console.dir(error);
+                  });
+              }}>
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
