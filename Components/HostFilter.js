@@ -220,6 +220,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
     margin: 6,
+    borderRadius: 20,
   },
 
   filterBox: {
@@ -260,10 +261,8 @@ const styles = StyleSheet.create({
     marginRight: 15,
     margin: 7,
     // backgroundColor: '#666666',
-
     display: 'flex',
     justifyContent: 'space-between',
-
     flexDirection: 'row',
   },
 

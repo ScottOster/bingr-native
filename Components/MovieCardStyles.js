@@ -1,79 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
-import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export const MovieCard = ({ navigation, route }) => {
-  const { roomCode, trackName, users } = route.params;
-
-  const [currentFilm, setCurrentFilm] = useState({});
-  const [counter, setCounter] = useState(0);
-  const [disabledBtn, setDisabledBtn] = useState(false);
-  const [finalFilm, setFinalFilm] = useState({});
-
-  const incrementCounter = () => {
-    console.log(counter);
-    if (counter < 19) {
-      setCounter((prevState) => {
-        const newState = prevState;
-        return newState + 1;
-      });
-    } else {
-      navigation.navigate('Result', {
-        roomCode,
-        trackName,
-        users,
-        finalFilm,
-      });
-    }
-  };
-
-  useEffect(() => {
-    getMovieByPosition(roomCode, counter).then((movie) => {
-      setCurrentFilm(movie);
-      setDisabledBtn(false);
-    });
-  }, [counter]);
-
-  useEffect(() => {
-    getMovieByPosition(roomCode, 19).then((finalFilm) => {
-      setFinalFilm(finalFilm);
-    });
-  }, []);
-
-  const { title, vote_average, overview, poster_path, id } = currentFilm;
-
+export const MovieCardStyles = () => {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
         <Image
           style={styles.backgroundImage}
-          source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
+          source={{ uri: 'https://image.tmdb.org/t/p/w500/npOnzAbLh6VOIu3naU5QaEcTepo.jpg' }}
         />
       </View>
       <LinearGradient colors={['transparent', '#000000']} style={styles.fullBackground}>
         <View style={styles.info}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.title}>Rating: {vote_average}</Text>
-          <Text style={styles.description}>{overview}</Text>
+          <Text style={styles.title}>Castle in the Sky</Text>
+          <Text style={styles.title}>7.9</Text>
+          <Text style={styles.description}>
+            A young boy and a girl with a magic crystal must race against pirates and foreign agents
+            in a search for a legendary floating castle."
+          </Text>
           <View style={styles.bothButtons}>
-            <TouchableOpacity
-              style={styles.button}
-              title="cringr"
-              disabled={disabledBtn}
-            
-        onPress={() => {
-          setDisabledBtn(true);
-          updateVotesTally(roomCode, String(id))
-            .then(() => {
-                incrementCounter();
-            })
-            .catch((error) => {
-              setDisabledBtn(false);
-              console.dir(error);
-            });
-        }}>
+            <TouchableOpacity style={styles.button} title="cringr">
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
@@ -86,23 +34,7 @@ export const MovieCard = ({ navigation, route }) => {
                 <Text style={styles.buttonText}>Cringr</Text>
               </LinearGradient>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              title="bingr"
-              disabled={disabledBtn}
-        onPress={() => {
-          setDisabledBtn(true);
-          updateVotesTally(roomCode, String(id))
-            .then(() => {
-              updateVotesCount(roomCode, String(id)).then(() => {
-                incrementCounter();
-              });
-            })
-            .catch((error) => {
-              setDisabledBtn(false);
-              console.dir(error);
-            });
-        }}>
+            <TouchableOpacity style={styles.button} title="bingr">
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
