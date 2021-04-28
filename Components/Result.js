@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import firebase from '../config';
-import { getTopFiveMovies, getMovie } from '../firebase-api';
+import { getTopFiveMovies, getMovie, updateUserProgress } from '../firebase-api';
 
 export const Result = ({ navigation, route }) => {
   const { roomCode, trackName, finalFilm, users } = route.params;
@@ -31,12 +31,15 @@ export const Result = ({ navigation, route }) => {
   };
 
   useEffect(() => {
+    updateUserProgress(roomCode, trackName).then(()=> {
+      console.log('has been updated')
+    })
     changes(users.length);
   }, []);
 
   return isLoading ? (
     <View>
-      <Text>Waitinf for Players...</Text>
+      <Text>Waiting for Players...</Text>
     </View>
   ) : (
     <View>
