@@ -38,9 +38,9 @@ export const Login = ({ navigation }) => {
           )}
 
           <TouchableOpacity
-            disabled={trackName.length < 2 ? true : false}
+            disabled={trackName.length < 2}
             onPress={() => {
-              navigation.navigate('HostFilter', { trackName });
+              navigation.navigate('HostFilter', { trackName, isHost: true });
             }}
             style={styles.button}
           >
@@ -64,10 +64,11 @@ export const Login = ({ navigation }) => {
             style={styles.textInput}
             onChangeText={setUserRoomCode}
             value={userRoomCode}
-            placeholder={'Room Code'}
+            placeholder={'Enter 4 digit room code'}
             placeholderTextColor={'#f9f9f9'}
           ></TextInput>
           <TouchableOpacity
+            disabled={userRoomCode.length < 4}
             onPress={() => {
               const capitalizedRoomCode = userRoomCode.toUpperCase();
 
