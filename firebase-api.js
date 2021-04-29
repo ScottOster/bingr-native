@@ -40,6 +40,13 @@ export const updateVotesCount = async (roomCode, movieId) => {
   await db.collection(roomCode).doc(movieId).update({ increment_votes: increment });
 };
 
+export const updateVoters = async (roomCode, voterName, movieId) => {
+  const movieRef = db.collection(String(roomCode)).doc(String(movieId));
+  await movieRef.update({
+    voters: firebase.firestore.FieldValue.arrayUnion(voterName),
+  });
+};
+
 export const updateVotesTally = async (roomCode, movieId) => {
   await db.collection(roomCode).doc(movieId).update({ tally: increment });
 };
@@ -113,7 +120,6 @@ export const joinRoomErrorChecker = (roomCode, userName) => {
     checkUserExists(roomCode, userName),
     checkUserProgress(roomCode),
   ]).then((values) => {
-    console.log(values);
     return values;
   });
 };

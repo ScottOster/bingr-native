@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import firebase from '../config';
 
 export const WaitingRoom = ({ navigation, route }) => {
-  const { roomCode, trackName, isHost } = route.params;
+  const { roomCode, trackName } = route.params;
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -14,11 +14,13 @@ export const WaitingRoom = ({ navigation, route }) => {
       .onSnapshot((snapshot) => {
         const usersOnFb = [];
         snapshot.forEach((doc) => {
-          console.log(doc.data());
           usersOnFb.push(doc.data().name);
         });
         setUsers(usersOnFb);
       });
+    return () => {
+      unsub();
+    };
   }, []);
 
   return (

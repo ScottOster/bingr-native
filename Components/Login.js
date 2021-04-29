@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
+import {
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import logo from '../logo.png';
 import { addUserToRoom, joinRoomErrorChecker } from '../firebase-api';
@@ -24,10 +31,13 @@ export const Login = ({ navigation }) => {
             onChangeText={setTrackName}
             value={trackName}
             placeholder={'Enter name'}
-            placeholderTextColor={'gray'}></TextInput>
+            placeholderTextColor={'gray'}
+          ></TextInput>
 
           {trackName.length < 2 && trackName.length > 0 && (
-            <Text style={styles.errorMessage}>Name must be longer than two characters</Text>
+            <Text style={styles.errorMessage}>
+              Name must be longer than two characters
+            </Text>
           )}
 
           <TouchableOpacity
@@ -35,7 +45,8 @@ export const Login = ({ navigation }) => {
             onPress={() => {
               navigation.navigate('HostFilter', { trackName, isHost: true });
             }}
-            style={styles.button}>
+            style={styles.button}
+          >
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
@@ -44,7 +55,8 @@ export const Login = ({ navigation }) => {
               style={styles.button}
               useAngle={true}
               angle={100}
-              angleCenter={{ x: 0.5, y: 0.5 }}>
+              angleCenter={{ x: 0.5, y: 0.5 }}
+            >
               <Text style={styles.buttonText}>HOST GAME</Text>
             </LinearGradient>
           </TouchableOpacity>
@@ -56,26 +68,30 @@ export const Login = ({ navigation }) => {
             onChangeText={setUserRoomCode}
             value={userRoomCode}
             placeholder={'Enter 4 digit room code'}
-            placeholderTextColor={'gray'}></TextInput>
+            placeholderTextColor={'gray'}
+          ></TextInput>
           <TouchableOpacity
             disabled={userRoomCode.length < 4}
             onPress={() => {
               const capitalizedRoomCode = userRoomCode.toUpperCase();
-              joinRoomErrorChecker(capitalizedRoomCode, trackName).then((res) => {
-                setRoomExists(res[0]);
-                setUserExists(res[1]);
-                setSomeonesFinished(res[2]);
-                if (res.every((status) => status === false)) {
-                  addUserToRoom(capitalizedRoomCode, trackName).then(() => {
-                    navigation.navigate('WaitingRoom', {
-                      trackName,
-                      roomCode: capitalizedRoomCode,
+              joinRoomErrorChecker(capitalizedRoomCode, trackName).then(
+                (res) => {
+                  setRoomExists(res[0]);
+                  setUserExists(res[1]);
+                  setSomeonesFinished(res[2]);
+                  if (res.every((status) => status === false)) {
+                    addUserToRoom(capitalizedRoomCode, trackName).then(() => {
+                      navigation.navigate('WaitingRoom', {
+                        trackName,
+                        roomCode: capitalizedRoomCode
+                      });
                     });
-                  });
+                  }
                 }
-              });
+              );
             }}
-            style={styles.button}>
+            style={styles.button}
+          >
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
@@ -84,7 +100,8 @@ export const Login = ({ navigation }) => {
               style={styles.button}
               useAngle={true}
               angle={300}
-              angleCenter={{ x: 0.5, y: 0.5 }}>
+              angleCenter={{ x: 0.5, y: 0.5 }}
+            >
               <Text style={styles.buttonText}>JOIN GAME</Text>
             </LinearGradient>
           </TouchableOpacity>
@@ -96,7 +113,9 @@ export const Login = ({ navigation }) => {
         )}
         {someonesFinished && (
           <View>
-            <Text style={styles.errorMessage}>Cannot join game in progress...</Text>
+            <Text style={styles.errorMessage}>
+              Cannot join game in progress...
+            </Text>
           </View>
         )}
         {userExists && (
@@ -105,13 +124,6 @@ export const Login = ({ navigation }) => {
           </View>
         )}
       </View>
-
-      {/* <View style={styles.devs}>
-        <Text style={styles.dev}>Deveoloped by:</Text>
-        <Text style={styles.dev}>Nate Masters, Jonathan Bennett,</Text>
-        <Text style={styles.dev}>Hasan Alfridi, Peter Keenan,</Text>
-        <Text style={styles.dev}>Scott Oster</Text>
-      </View> */}
     </LinearGradient>
   );
 };
@@ -127,10 +139,10 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     borderRadius: 10,
     height: 1,
-    flex: 1,
+    flex: 1
   },
   body: {
-    flex: 1,
+    flex: 1
   },
   loginLogo: {
     height: 130,
@@ -142,14 +154,14 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     // width: '50%',
     marginTop: 35,
-    marginBottom: 50,
+    marginBottom: 50
   },
   login: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     marginLeft: 40,
-    marginRight: 40,
+    marginRight: 40
   },
   textInput: {
     // opacity: '0.1',
@@ -158,7 +170,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e0e0e0',
     borderBottomWidth: 2,
     padding: 5,
-    textAlign: 'left',
+    textAlign: 'left'
   },
   button: {
     width: 120,
@@ -169,34 +181,34 @@ const styles = StyleSheet.create({
     marginTop: 10,
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 10
     // backgroundColor: '#2C3E50',
   },
   buttonText: {
     fontSize: 14,
     textAlign: 'center',
     margin: 10,
-    color: '#FFFFFF',
+    color: '#FFFFFF'
   },
   or: {
     color: 'gray',
     textAlign: 'center',
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 10
   },
   devs: {
     textAlign: 'center',
     marginTop: 20,
-    marginBottom: 10,
+    marginBottom: 10
   },
   dev: {
     fontSize: 10,
-    color: '#f2f2f2',
+    color: '#f2f2f2'
   },
 
   errorMessage: {
     color: '#ff5050',
     fontSize: 12,
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 });
