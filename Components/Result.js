@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     // opacity: '80%',
+    borderRadius: 15,
   },
   title: {
     color: '#363636',
@@ -188,5 +189,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
 
     color: '#FFFFFF',
+  },
+
+  waiting: {
+    color: '#363636',
+    fontSize: 30,
+    margin: 10,
+    marginTop: 200,
+    textAlign: 'center',
   },
 });
