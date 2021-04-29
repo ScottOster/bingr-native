@@ -24,7 +24,9 @@ export const Login = ({ navigation }) => {
             placeholder={'Enter name'}
             placeholderTextColor={'gray'}></TextInput>
 
-          {trackName.length < 2 && trackName.length > 0 && <Text style={styles.errorMessage}>Name must be longer than two characters</Text>}
+          {trackName.length < 2 && trackName.length > 0 && (
+            <Text style={styles.errorMessage}>Name must be longer than two characters</Text>
+          )}
 
           <TouchableOpacity
             disabled={trackName.length < 2}
@@ -188,5 +190,5 @@ const styles = StyleSheet.create({
     color: '#ff5050',
     fontSize: 12,
     textAlign: 'center',
-  }
+  },
 });

@@ -29,7 +29,7 @@ export const WaitingRoom = ({ navigation, route }) => {
         <Text style={styles.code}>{roomCode}</Text>
         <View style={styles.names}>
           <View style={styles.joinedPlayers}>
-          <Text style={styles.pText}> Joined Players</Text>
+            <Text style={styles.pText}> Joined Players</Text>
           </View>
           {users.map((user) => {
             return (
@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     borderBottomColor: '#666666',
     borderBottomWidth: 1,
-    
   },
 
   pText: {

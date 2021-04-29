@@ -26,9 +26,11 @@ export const ResultStyles = ({ navigation }) => {
         <Image style={styles.topPic} source={toppic3} />
       </View>
       <View style={styles.logo}>
-        <TouchableOpacity onPress={() => {
-          navigation.navigate('Login');
-        }} style={styles.button}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Login');
+          }}
+          style={styles.button}>
           <LinearGradient
             start={{ x: 0.0, y: 0.0 }}
             end={{ x: 0.0, y: 0.0 }}
