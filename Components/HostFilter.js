@@ -79,10 +79,10 @@ export const HostFilter = ({ navigation, route }) => {
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.fullBackground}>
       <View style={styles.backGround}>
         <View style={styles.filterBox}>
-      <View style={styles.logo}>
-        <Image style={styles.loginLogo} source={bingr1} />
-      </View>
-        
+          <View style={styles.logo}>
+            <Image style={styles.loginLogo} source={bingr1} />
+          </View>
+
           <View style={styles.questionsBorder}>
             <Text style={styles.questions}>What are you watching on?</Text>
           </View>
@@ -208,7 +208,6 @@ export const HostFilter = ({ navigation, route }) => {
             <Text style={styles.warningMsg}>Please select atleast one provider and genre</Text>
           )}
         </View>
-        
       </View>
     </LinearGradient>
   );
@@ -233,7 +232,6 @@ const styles = StyleSheet.create({
   },
 
   loginLogo: {
-
     height: 100,
     width: 180,
     // maxWidth: '30%',
@@ -245,7 +243,6 @@ const styles = StyleSheet.create({
     marginTop: '1%',
     // marginBottom: '1%',
     // marginBottom: 50,
-
   },
 
   backGround: {

@@ -22,9 +22,9 @@ export const Login = ({ navigation }) => {
             onChangeText={setTrackName}
             value={trackName}
             placeholder={'Enter name'}
-            placeholderTextColor={'#f9f9f9'}></TextInput>
+            placeholderTextColor={'gray'}></TextInput>
 
-          {trackName.length < 2 && <Text>Name must be longer than two characters</Text>}
+          {trackName.length < 2 && trackName.length > 0 && <Text style={styles.errorMessage}>Name must be longer than two characters</Text>}
 
           <TouchableOpacity
             disabled={trackName.length < 2}
@@ -52,7 +52,7 @@ export const Login = ({ navigation }) => {
             onChangeText={setUserRoomCode}
             value={userRoomCode}
             placeholder={'Enter 4 digit room code'}
-            placeholderTextColor={'#f9f9f9'}></TextInput>
+            placeholderTextColor={'gray'}></TextInput>
           <TouchableOpacity
             disabled={userRoomCode.length < 4}
             onPress={() => {
@@ -91,7 +91,7 @@ export const Login = ({ navigation }) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('ResultStyles');
+          navigation.navigate('MovieCardStyles');
         }}
         style={styles.button}>
         <Text style={styles.buttonText}>HOST GAME</Text>
@@ -108,12 +108,12 @@ export const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   loginPage: {
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: '#f2f2f2',
     paddingTop: 5,
     paddingBottom: 1,
-    marginLeft: 30,
-    marginRight: 30,
-    marginTop: 30,
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15,
     marginBottom: 10,
     borderRadius: 10,
     height: 1,
@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    
   },
   loginLogo: {
     height: 130,
@@ -145,8 +144,9 @@ const styles = StyleSheet.create({
   textInput: {
     // opacity: '0.1',
     marginBottom: 20,
-    borderBottomColor: '#F9F9F9',
-    borderBottomWidth: 1,
+    marginTop: 20,
+    borderBottomColor: '#e0e0e0',
+    borderBottomWidth: 2,
     padding: 5,
     textAlign: 'left',
   },
@@ -155,8 +155,8 @@ const styles = StyleSheet.create({
     height: 40,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: 10,
-    marginTop: 5,
+    marginBottom: 20,
+    marginTop: 10,
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 10,
@@ -169,9 +169,10 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   or: {
-    color: '#F9F9F9',
+    color: 'gray',
     textAlign: 'center',
-    margin: 10,
+    marginBottom: 10,
+    marginTop: 10,
   },
   devs: {
     textAlign: 'center',
@@ -180,6 +181,12 @@ const styles = StyleSheet.create({
   },
   dev: {
     fontSize: 10,
-    color: '#F9F9F9',
+    color: '#f2f2f2',
   },
+
+  errorMessage: {
+    color: '#ff5050',
+    fontSize: 12,
+    textAlign: 'center',
+  }
 });
