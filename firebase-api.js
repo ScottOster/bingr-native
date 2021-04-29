@@ -36,38 +36,41 @@ export const getTopFiveMovies = async (roomCode) => {
 
 const increment = firebase.firestore.FieldValue.increment(1);
 
-export const updateVotesCount = (roomCode, movieId) => {
-  return db
+export const updateVotesCount = async (roomCode, movieId) => {
+  await db
     .collection(roomCode)
     .doc(movieId)
-    .update({ increment_votes: increment })
-    .then(() => {
-      console.log('doc updated');
-    });
+    .update({ increment_votes: increment });
 };
 
-export const updateVotesTally = (roomCode, movieId) => {
-  return db
-    .collection(roomCode)
-    .doc(movieId)
-    .update({ tally: increment })
-    .then(() => {
-      console.log('doc updated');
-    });
+export const updateVotesTally = async (roomCode, movieId) => {
+  await db.collection(roomCode).doc(movieId).update({ tally: increment });
 };
 
 export const createUserRoom = (roomCode, hostName) => {
-  return db
+  db.collection(`${roomCode}users`).doc(hostName).set({ name: hostName });
+};
+
+export const updateUserProgress = async (roomCode, userName) => {
+  await db
     .collection(`${roomCode}users`)
-    .doc(hostName)
-    .set({ name: hostName })
-    .then(() => {
-      console.log('user room created');
-    });
+    .doc(userName)
+    .update({ isFinished: true });
+};
+
+export const checkUserProgress = async (roomCode) => {
+  const snapshot = await db.collection(`${roomCode}users`).get();
+  let truthy = false;
+  snapshot.forEach((user) => {
+    if (user.data().isFinished) {
+      truthy = true;
+    }
+  });
+  return truthy;
 };
 
 export const addUserToRoom = async (roomCode, userName) => {
-  const snapshot = await db.collection(roomCode).get();
+  const snapshot = await db.collection(`${roomCode}users`).get();
   if (snapshot.empty) {
     return false;
   } else {
@@ -87,4 +90,36 @@ export const getUsersByRoomCode = async (roomCode) => {
     });
     return users;
   }
+};
+
+export const checkRoomExists = async (roomCode) => {
+  const snapshot = await db.collection(roomCode).get();
+  if (snapshot.empty) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const checkUserExists = async (roomCode, userName) => {
+  const snapshot = await db.collection(`${roomCode}users`).get();
+  if (snapshot.empty) return false;
+  else {
+    let truthy = false;
+    snapshot.forEach((user) => {
+      if (user.data().name === userName) truthy = true;
+    });
+    return truthy;
+  }
+};
+
+export const joinRoomErrorChecker = (roomCode, userName) => {
+  return Promise.all([
+    checkRoomExists(roomCode),
+    checkUserExists(roomCode, userName),
+    checkUserProgress(roomCode)
+  ]).then((values) => {
+    console.log(values);
+    return values;
+  });
 };

@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import { TouchableOpacity, StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import logo from '../logo.png';
-import { addUserToRoom } from '../firebase-api';
+import {
+  addUserToRoom,
+  checkUserProgress,
+  getUsersByRoomCode,
+  joinRoomErrorChecker,
+} from '../firebase-api';
 
 export const Login = ({ navigation }) => {
   const [trackName, setTrackName] = useState('');
   const [userRoomCode, setUserRoomCode] = useState('');
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [roomDoesNotExist, setRoomExists] = useState(null);
+  const [someonesFinished, setSomeonesFinished] = useState(null);
+  const [userExists, setUserExists] = useState(null);
+  // let userExists = false;
 
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
@@ -59,15 +67,17 @@ export const Login = ({ navigation }) => {
             disabled={userRoomCode.length < 4}
             onPress={() => {
               const capitalizedRoomCode = userRoomCode.toUpperCase();
-
-              addUserToRoom(capitalizedRoomCode, trackName).then((res) => {
-                if (res) {
-                  navigation.navigate('WaitingRoom', {
-                    trackName,
-                    roomCode: capitalizedRoomCode,
+              joinRoomErrorChecker(capitalizedRoomCode, trackName).then((res) => {
+                setRoomExists(res[0]);
+                setUserExists(res[1]);
+                setSomeonesFinished(res[2]);
+                if (res.every((status) => status === false)) {
+                  addUserToRoom(capitalizedRoomCode, trackName).then(() => {
+                    navigation.navigate('WaitingRoom', {
+                      trackName,
+                      roomCode: capitalizedRoomCode,
+                    });
                   });
-                } else {
-                  setErrorMessage(true);
                 }
               });
             }}
@@ -85,9 +95,19 @@ export const Login = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-        {errorMessage && (
+        {roomDoesNotExist && (
           <View>
             <Text>Invalid room</Text>
+          </View>
+        )}
+        {someonesFinished && (
+          <View>
+            <Text>Cannot join game in progress...</Text>
+          </View>
+        )}
+        {userExists && (
+          <View>
+            <Text>User already exists</Text>
           </View>
         )}
       </View>

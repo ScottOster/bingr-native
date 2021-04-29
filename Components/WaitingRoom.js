@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, StyleSheet, Button, Switch, View, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { color } from 'react-native-reanimated';
-import { getUsersByRoomCode } from '../firebase-api';
 import firebase from '../config';
 
 export const WaitingRoom = ({ navigation, route }) => {
@@ -10,7 +8,7 @@ export const WaitingRoom = ({ navigation, route }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    firebase
+    const unsub = firebase
       .firestore()
       .collection(`${roomCode}users`)
       .onSnapshot((snapshot) => {
@@ -24,7 +22,10 @@ export const WaitingRoom = ({ navigation, route }) => {
   }, []);
 
   return (
-    <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.fullBackground}>
+    <LinearGradient
+      colors={['#4ac6cd', '#49d695']}
+      style={styles.fullBackground}
+    >
       <View style={styles.backGround}>
         <Text style={styles.code}>{roomCode}</Text>
         <View style={styles.names}>
@@ -44,7 +45,8 @@ export const WaitingRoom = ({ navigation, route }) => {
           style={styles.button}
           onPress={() => {
             navigation.navigate('MovieCard', { roomCode, trackName, users });
-          }}>
+          }}
+        >
           <LinearGradient
             start={{ x: 0.0, y: 0.0 }}
             end={{ x: 0.0, y: 0.0 }}
@@ -64,14 +66,14 @@ export const WaitingRoom = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   fullBackground: {
-    flex: 1,
+    flex: 1
   },
 
   backGround: {
     backgroundColor: '#f2f2f2',
     flex: 1,
     margin: 6,
-    borderRadius: 20,
+    borderRadius: 20
   },
   code: {
     fontSize: 50,
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
 
   names: {
     textAlign: 'center',
-    margin: 30,
+    margin: 30
   },
 
   name: {
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     color: '#666666',
     textAlign: 'left',
     // backgroundColor: 'pink',
-    width: 70,
+    width: 70
   },
   button: {
     width: 120,
@@ -121,19 +123,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 10
     // backgroundColor: '#2C3E50',
   },
   buttonText: {
     fontSize: 14,
     textAlign: 'center',
     margin: 10,
-    color: '#FFFFFF',
+    color: '#FFFFFF'
   },
 
   warningMsg: {
     color: '#ff5050',
     marginTop: 40,
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 });

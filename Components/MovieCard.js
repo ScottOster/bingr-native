@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
-import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
+import {
+  updateVotesTally,
+  getMovieByPosition,
+  updateVotesCount
+} from '../firebase-api';
 
 export const MovieCard = ({ navigation, route }) => {
   const { roomCode, trackName, users } = route.params;
@@ -24,7 +28,7 @@ export const MovieCard = ({ navigation, route }) => {
         roomCode,
         trackName,
         users,
-        finalFilm,
+        finalFilm
       });
     }
   };
@@ -52,7 +56,10 @@ export const MovieCard = ({ navigation, route }) => {
           source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
         />
       </View>
-      <LinearGradient colors={['transparent', '#000000']} style={styles.fullBackground}>
+      <LinearGradient
+        colors={['transparent', '#000000']}
+        style={styles.fullBackground}
+      >
         <View style={styles.info}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.title}>Rating: {vote_average}</Text>
@@ -72,7 +79,8 @@ export const MovieCard = ({ navigation, route }) => {
                     setDisabledBtn(false);
                     console.dir(error);
                   });
-              }}>
+              }}
+            >
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
@@ -81,7 +89,8 @@ export const MovieCard = ({ navigation, route }) => {
                 style={styles.button}
                 useAngle={true}
                 angle={300}
-                angleCenter={{ x: 0.5, y: 0.5 }}>
+                angleCenter={{ x: 0.5, y: 0.5 }}
+              >
                 <Text style={styles.buttonText}>Cringr</Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -101,7 +110,8 @@ export const MovieCard = ({ navigation, route }) => {
                     setDisabledBtn(false);
                     console.dir(error);
                   });
-              }}>
+              }}
+            >
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
@@ -110,7 +120,8 @@ export const MovieCard = ({ navigation, route }) => {
                 style={styles.button}
                 useAngle={true}
                 angle={300}
-                angleCenter={{ x: 0.5, y: 0.5 }}>
+                angleCenter={{ x: 0.5, y: 0.5 }}
+              >
                 <Text style={styles.buttonText}>Bingr</Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -123,13 +134,13 @@ export const MovieCard = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   fullBackground: {
-    flex: 1,
+    flex: 1
   },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   backgroundContainer: {
     flex: 1,
@@ -137,27 +148,27 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     width: '100%',
-    height: '100%',
+    height: '100%'
   },
   backgroundImage: {
     flex: 1,
     width: null,
-    height: null,
+    height: null
   },
   info: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   title: {
     color: '#FFFFFF',
     fontSize: 20,
     margin: 10,
-    marginBottom: 0,
+    marginBottom: 0
   },
   description: {
     color: '#FFFFFF',
     margin: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   button: {
     width: 140,
@@ -166,18 +177,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 10
     // backgroundColor: '#2C3E50',
   },
   buttonText: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    color: '#FFFFFF',
+    color: '#FFFFFF'
   },
   bothButtons: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-  },
+    justifyContent: 'space-evenly'
+  }
 });

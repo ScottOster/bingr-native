@@ -2,22 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import firebase from '../config';
-import { getTopFiveMovies, getMovie } from '../firebase-api';
+import { getTopFiveMovies, getMovie, updateUserProgress } from '../firebase-api';
 
 export const Result = ({ navigation, route }) => {
   const { roomCode, trackName, finalFilm, users } = route.params;
 
   const [isLoading, setIsLoading] = useState(true);
-  const [topMovie, setTopMovie] = useState();
+  const [topMovie, setTopMovie] = useState(null);
   const [runnersUp, setRunnersUp] = useState([]);
 
-  const changes = (totalPlayers) => {
-    firebase
+  useEffect(() => {
+    updateUserProgress(roomCode, trackName).then(() => {
+      console.log('has been updated');
+    });
+    const unsub = firebase
       .firestore()
       .collection(roomCode)
       .doc(String(finalFilm.id))
       .onSnapshot((snapshot) => {
-        if (snapshot.data().tally >= totalPlayers) {
+        console.log(snapshot.data().tally);
+        if (snapshot.data().tally >= users.length) {
           getTopFiveMovies(roomCode)
             .then((topFiveFilms) => {
               setRunnersUp(topFiveFilms.slice(1, 5));
@@ -26,13 +30,10 @@ export const Result = ({ navigation, route }) => {
             .then((topMovie) => {
               setTopMovie(topMovie);
               setIsLoading(false);
+              unsub();
             });
         }
       });
-  };
-
-  useEffect(() => {
-    changes(users.length);
   }, []);
 
   return isLoading ? (
