@@ -32,30 +32,30 @@ export const MovieCardStyles = ({ navigation, route }) => {
           </View>
         </View>
         <View style={styles.bothButtons}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button1}>
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
               locations={[0.0, 0.74]}
-              colors={['#ff5050', '#d4815d']}
+              colors={['#f2f2f2', '#f2f2f2']}
               style={styles.button}
               useAngle={true}
               angle={300}
               angleCenter={{ x: 0.5, y: 0.5 }}>
-              <Text style={styles.buttonText}>Cringr</Text>
+              <Text style={styles.buttonText1}>Cringr</Text>
             </LinearGradient>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button2}>
             <LinearGradient
               start={{ x: 0.0, y: 0.0 }}
               end={{ x: 0.0, y: 0.0 }}
               locations={[0.0, 0.74]}
-              colors={['#4ac6cd', '#49d695']}
+              colors={['#f2f2f2', '#f2f2f2']}
               style={styles.button}
               useAngle={true}
               angle={300}
               angleCenter={{ x: 0.5, y: 0.5 }}>
-              <Text style={styles.buttonText}>Bingr</Text>
+              <Text style={styles.buttonText2}>Bingr</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   info: {
     flex: 1,
     justifyContent: 'flex-end',
+
   },
   infoBackground: {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
@@ -134,8 +135,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     margin: 10,
   },
-  button: {
-    width: 140,
+  button1: {
+    width: 150,
     height: 50,
 
     display: 'flex',
@@ -143,12 +144,32 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 7.5,
     marginBottom: 7.5,
+    borderColor: '#ff5050',
+    borderWidth: 2,
   },
-  buttonText: {
+  button2: {
+    width: 150,
+    height: 50,
+
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginTop: 7.5,
+    marginBottom: 7.5,
+    borderColor: '#4db35a',
+    borderWidth: 2,
+  },
+  buttonText1: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
-    color: '#f2f2f2',
+    // margin: 10,
+    color: '#ff5050',
+  },
+  buttonText2: {
+    fontSize: 20,
+    textAlign: 'center',
+    // margin: 10,
+    color: '#4db35a',
   },
   bothButtons: {
     display: 'flex',
