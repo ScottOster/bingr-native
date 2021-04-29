@@ -105,7 +105,7 @@ export const Login = ({ navigation }) => {
           </View>
         )}
       </View>
-      
+
       {/* <View style={styles.devs}>
         <Text style={styles.dev}>Deveoloped by:</Text>
         <Text style={styles.dev}>Nate Masters, Jonathan Bennett,</Text>

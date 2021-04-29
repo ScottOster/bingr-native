@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontSize: 20,
   },
- box: {
-  backgroundColor: '#f2f2f2',
-  height: 30,
-  width:'100%',
- },
+  box: {
+    backgroundColor: '#f2f2f2',
+    height: 30,
+    width: '100%',
+  },
   loginLogo: {
     height: '60%',
     width: '20%',

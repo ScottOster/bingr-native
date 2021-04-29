@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import firebase from '../config';
-import {
-  getTopFiveMovies,
-  getMovie,
-  updateUserProgress,
-} from '../firebase-api';
+import { getTopFiveMovies, getMovie, updateUserProgress } from '../firebase-api';
 import bingr1 from '../bingr1.png';
 import toppic3 from '../toppic3.png';
 
@@ -62,8 +58,8 @@ export const Result = ({ navigation, route }) => {
             }}
           />
         </View>
-        </View>
-        <View style={styles.topPicCon}>
+      </View>
+      <View style={styles.topPicCon}>
         <Image style={styles.topPic} source={toppic3} />
       </View>
       <View style={styles.logo}>
@@ -71,8 +67,7 @@ export const Result = ({ navigation, route }) => {
           onPress={() => {
             navigation.navigate('Login');
           }}
-          style={styles.button}
-        >
+          style={styles.button}>
           <LinearGradient
             start={{ x: 0.0, y: 0.0 }}
             end={{ x: 0.0, y: 0.0 }}
@@ -81,8 +76,7 @@ export const Result = ({ navigation, route }) => {
             style={styles.button}
             useAngle={true}
             angle={300}
-            angleCenter={{ x: 0.5, y: 0.5 }}
-          >
+            angleCenter={{ x: 0.5, y: 0.5 }}>
             <Text style={styles.buttonText}>Play Again</Text>
           </LinearGradient>
         </TouchableOpacity>
@@ -106,8 +100,8 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: '#f2f2f2',
     height: 30,
-    width:'100%',
-   },
+    width: '100%',
+  },
 
   topPic: {
     height: '100%',

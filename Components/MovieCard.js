@@ -47,7 +47,7 @@ export const MovieCard = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-        <View style={styles.box}></View>
+      <View style={styles.box}></View>
       <View style={styles.logo}>
         <Image style={styles.loginLogo} source={bingr1} />
       </View>
@@ -57,7 +57,9 @@ export const MovieCard = ({ navigation, route }) => {
           source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
         />
       </View>
-      <LinearGradient colors={['transparent', 'transparent', 'transparent']} style={styles.fullBackground}>
+      <LinearGradient
+        colors={['transparent', 'transparent', 'transparent']}
+        style={styles.fullBackground}>
         <View style={styles.info}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.title}>Rating: {vote_average}</Text>
@@ -140,11 +142,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontSize: 20,
   },
- box: {
-  backgroundColor: '#f2f2f2',
-  height: 30,
-  width:'100%',
- },
+  box: {
+    backgroundColor: '#f2f2f2',
+    height: 30,
+    width: '100%',
+  },
   loginLogo: {
     height: '60%',
     width: '20%',
@@ -248,4 +250,3 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
   },
 });
-

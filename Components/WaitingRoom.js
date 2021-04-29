@@ -7,7 +7,6 @@ export const WaitingRoom = ({ navigation, route }) => {
   const { roomCode, trackName, isHost } = route.params;
   const [users, setUsers] = useState([]);
 
-
   useEffect(() => {
     const unsub = firebase
       .firestore()
