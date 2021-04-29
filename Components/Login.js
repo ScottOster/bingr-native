@@ -105,13 +105,7 @@ export const Login = ({ navigation }) => {
           </View>
         )}
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('ResultStyles');
-        }}
-        style={styles.button}>
-        <Text style={styles.buttonText}>HOST GAME</Text>
-      </TouchableOpacity>
+      
       {/* <View style={styles.devs}>
         <Text style={styles.dev}>Deveoloped by:</Text>
         <Text style={styles.dev}>Nate Masters, Jonathan Bennett,</Text>

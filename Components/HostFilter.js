@@ -8,7 +8,7 @@ import { createUserRoom } from '../firebase-api';
 import bingr1 from '../bingr1.png';
 
 export const HostFilter = ({ navigation, route }) => {
-  // const { trackName, isHost } = route.params;
+  const { trackName, isHost } = route.params;
   const [netflix, setIsNetflixEnabled] = useState(false);
   const [amazon, setIsAmazonEnabled] = useState(false);
   const [disney, setIsDisneyEnabled] = useState(false);
