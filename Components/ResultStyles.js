@@ -16,7 +16,8 @@ export const ResultStyles = ({ navigation }) => {
           <Image
             style={styles.backgroundImage}
             source={{
-              uri: 'https://image.tmdb.org/t/p/w500/gCgt1WARPZaXnq523ySQEUKinCs.jpg',
+              uri:
+                'https://image.tmdb.org/t/p/w500/gCgt1WARPZaXnq523ySQEUKinCs.jpg',
             }}
           />
         </View>
@@ -30,7 +31,8 @@ export const ResultStyles = ({ navigation }) => {
           onPress={() => {
             navigation.navigate('Login');
           }}
-          style={styles.button}>
+          style={styles.button}
+        >
           <LinearGradient
             start={{ x: 0.0, y: 0.0 }}
             end={{ x: 0.0, y: 0.0 }}
@@ -39,7 +41,8 @@ export const ResultStyles = ({ navigation }) => {
             style={styles.button}
             useAngle={true}
             angle={300}
-            angleCenter={{ x: 0.5, y: 0.5 }}>
+            angleCenter={{ x: 0.5, y: 0.5 }}
+          >
             <Text style={styles.buttonText}>Play Again</Text>
           </LinearGradient>
         </TouchableOpacity>
@@ -102,7 +105,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    opacity: '80%',
+    opacity: 0.8,
   },
   title: {
     color: '#363636',
