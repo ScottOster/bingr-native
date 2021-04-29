@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    opacity: '80%',
+    // opacity: '80%',
   },
   title: {
     color: '#363636',

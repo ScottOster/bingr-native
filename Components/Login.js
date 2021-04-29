@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, StyleSheet, Button, View, Text, Image, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import logo from '../logo.png';
-import {
-  addUserToRoom,
-  checkUserProgress,
-  getUsersByRoomCode,
-  joinRoomErrorChecker,
-} from '../firebase-api';
+import { addUserToRoom, joinRoomErrorChecker } from '../firebase-api';
 
 export const Login = ({ navigation }) => {
   const [trackName, setTrackName] = useState('');
@@ -15,7 +10,6 @@ export const Login = ({ navigation }) => {
   const [roomDoesNotExist, setRoomExists] = useState(null);
   const [someonesFinished, setSomeonesFinished] = useState(null);
   const [userExists, setUserExists] = useState(null);
-  // let userExists = false;
 
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
@@ -97,33 +91,33 @@ export const Login = ({ navigation }) => {
         </View>
         {roomDoesNotExist && (
           <View>
-            <Text>Invalid room</Text>
+            <Text style={styles.errorMessage}>Invalid room</Text>
           </View>
         )}
         {someonesFinished && (
           <View>
-            <Text>Cannot join game in progress...</Text>
+            <Text style={styles.errorMessage}>Cannot join game in progress...</Text>
           </View>
         )}
         {userExists && (
           <View>
-            <Text>User already exists</Text>
+            <Text style={styles.errorMessage}>User already exists</Text>
           </View>
         )}
       </View>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => {
-          navigation.navigate('MovieCardStyles');
+          navigation.navigate('HostFilter');
         }}
         style={styles.button}>
         <Text style={styles.buttonText}>HOST GAME</Text>
-      </TouchableOpacity>
-      <View style={styles.devs}>
+      </TouchableOpacity> */}
+      {/* <View style={styles.devs}>
         <Text style={styles.dev}>Deveoloped by:</Text>
         <Text style={styles.dev}>Nate Masters, Jonathan Bennett,</Text>
         <Text style={styles.dev}>Hasan Alfridi, Peter Keenan,</Text>
         <Text style={styles.dev}>Scott Oster</Text>
-      </View>
+      </View> */}
     </LinearGradient>
   );
 };
@@ -135,8 +129,8 @@ const styles = StyleSheet.create({
     paddingBottom: 1,
     marginLeft: 15,
     marginRight: 15,
-    marginTop: 15,
-    marginBottom: 10,
+    marginTop: 75,
+    marginBottom: 75,
     borderRadius: 10,
     height: 1,
     flex: 1,
@@ -153,7 +147,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     // width: '50%',
-    marginTop: 5,
+    marginTop: 35,
     marginBottom: 50,
   },
   login: {
