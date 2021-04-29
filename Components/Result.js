@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import firebase from '../config';
-import {
-  getTopFiveMovies,
-  getMovie,
-  updateUserProgress
-} from '../firebase-api';
+import { getTopFiveMovies, getMovie, updateUserProgress } from '../firebase-api';
 import bingr1 from '../bingr1.png';
 import toppic3 from '../toppic3.png';
 
@@ -55,7 +51,7 @@ export const Result = ({ navigation, route }) => {
           <Image
             style={styles.backgroundImage}
             source={{
-              uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`
+              uri: `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`,
             }}
           />
         </View>
@@ -68,8 +64,7 @@ export const Result = ({ navigation, route }) => {
           onPress={() => {
             navigation.navigate('Login');
           }}
-          style={styles.button}
-        >
+          style={styles.button}>
           <LinearGradient
             start={{ x: 0.0, y: 0.0 }}
             end={{ x: 0.0, y: 0.0 }}
@@ -78,8 +73,7 @@ export const Result = ({ navigation, route }) => {
             style={styles.button}
             useAngle={true}
             angle={300}
-            angleCenter={{ x: 0.5, y: 0.5 }}
-          >
+            angleCenter={{ x: 0.5, y: 0.5 }}>
             <Text style={styles.buttonText}>Play Again</Text>
           </LinearGradient>
         </TouchableOpacity>
@@ -90,7 +84,7 @@ export const Result = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1
+    flex: 1,
   },
 
   loginLogo: {
@@ -98,18 +92,18 @@ const styles = StyleSheet.create({
     width: '20%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '1%'
+    marginTop: '1%',
   },
   box: {
     backgroundColor: '#f2f2f2',
     height: 30,
-    width: '100%'
+    width: '100%',
   },
 
   topPic: {
     height: '100%',
     width: '100%',
-    transform: [{ rotate: '345deg' }]
+    transform: [{ rotate: '345deg' }],
   },
 
   topPicCon: {
@@ -119,7 +113,7 @@ const styles = StyleSheet.create({
     marginRight: '20%',
     marginTop: '70%',
     marginBottom: 20,
-    position: 'absolute'
+    position: 'absolute',
   },
 
   logo: {
@@ -128,19 +122,19 @@ const styles = StyleSheet.create({
     height: 65,
     textAlign: 'center',
     justifyContent: 'center',
-    fontSize: 20
+    fontSize: 20,
   },
 
   whiteBackground: {
     backgroundColor: '#f2f2f2',
     flex: 1,
-    margin: 6
+    margin: 6,
   },
 
   backgroundContainer: {
     flex: 1,
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   backgroundImage: {
     height: '100%',
@@ -148,34 +142,34 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     // opacity: '80%',
-    borderRadius: 15
+    borderRadius: 15,
   },
   title: {
     color: '#363636',
     fontSize: 30,
     margin: 10,
     marginTop: 20,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   honourableMentions: {
     color: '#666666',
     fontSize: 18,
     margin: 4,
     marginTop: 20,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   text: {
     fontSize: 15,
     color: '#666666',
     textAlign: 'center',
-    margin: 2
+    margin: 2,
   },
 
   topPick: {
     color: 'white',
     fontSize: 50,
     textAlign: 'center',
-    marginTop: 10
+    marginTop: 10,
   },
 
   button: {
@@ -185,13 +179,13 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 10
+    borderRadius: 10,
   },
   buttonText: {
     fontSize: 20,
     textAlign: 'center',
 
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
 
   waiting: {
@@ -199,6 +193,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     margin: 10,
     marginTop: 200,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
