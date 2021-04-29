@@ -7,6 +7,7 @@ import toppic3 from '../toppic3.png';
 export const ResultStyles = ({ navigation }) => {
   return (
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.body}>
+       <View style={styles.box}></View>
       <View style={styles.logo}>
         <Image style={styles.loginLogo} source={bingr1} />
       </View>
@@ -60,6 +61,11 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: '1%',
   },
+  box: {
+    backgroundColor: '#f2f2f2',
+    height: 30,
+    width:'100%',
+   },
 
   topPic: {
     height: '100%',

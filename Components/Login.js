@@ -107,7 +107,7 @@ export const Login = ({ navigation }) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('MovieCardStyles');
+          navigation.navigate('ResultStyles');
         }}
         style={styles.button}>
         <Text style={styles.buttonText}>HOST GAME</Text>
