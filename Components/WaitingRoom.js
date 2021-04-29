@@ -3,11 +3,11 @@ import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import firebase from '../config';
 
+let unsub;
+
 export const WaitingRoom = ({ navigation, route }) => {
   const { roomCode, trackName, isHost } = route.params;
   const [users, setUsers] = useState([]);
-
-  let unsub;
 
   useEffect(() => {
     unsub = firebase
@@ -46,7 +46,7 @@ export const WaitingRoom = ({ navigation, route }) => {
           title='Get Bingin'
           style={styles.button}
           onPress={() => {
-            unsub();
+            console.log(unsub);
             navigation.navigate('MovieCard', { roomCode, trackName, users });
           }}
         >

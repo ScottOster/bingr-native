@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
   info: {
     flex: 1,
     justifyContent: 'flex-end',
-
   },
   infoBackground: {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',

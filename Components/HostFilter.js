@@ -77,10 +77,7 @@ export const HostFilter = ({ navigation, route }) => {
   };
 
   return (
-    <LinearGradient
-      colors={['#4ac6cd', '#49d695']}
-      style={styles.fullBackground}
-    >
+    <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.fullBackground}>
       <View style={styles.backGround}>
         <View style={styles.filterBox}>
           <View style={styles.logo}>
@@ -199,15 +196,14 @@ export const HostFilter = ({ navigation, route }) => {
                     navigation.navigate('WaitingRoom', {
                       roomCode,
                       trackName,
-                      isHost
+                      isHost,
                     });
                   })
                   .catch((error) => {
                     console.dir(error);
                   });
               }}
-              style={styles.button}
-            >
+              style={styles.button}>
               {creatingGame && <Text> creating game room...</Text>}
 
               <LinearGradient
@@ -218,15 +214,12 @@ export const HostFilter = ({ navigation, route }) => {
                 style={styles.button}
                 useAngle={true}
                 angle={100}
-                angleCenter={{ x: 0.5, y: 0.5 }}
-              >
+                angleCenter={{ x: 0.5, y: 0.5 }}>
                 <Text style={styles.buttonText}>START</Text>
               </LinearGradient>
             </TouchableOpacity>
           ) : (
-            <Text style={styles.warningMsg}>
-              Please select atleast one provider and genre
-            </Text>
+            <Text style={styles.warningMsg}>Please select atleast one provider and genre</Text>
           )}
         </View>
       </View>
@@ -236,7 +229,7 @@ export const HostFilter = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   fullBackground: {
-    flex: 1
+    flex: 1,
   },
   logo: {
     // backgroundColor: '#f2f2f2',
@@ -270,7 +263,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
     margin: 6,
-    borderRadius: 20
+    borderRadius: 20,
   },
 
   filterBox: {
@@ -280,7 +273,7 @@ const styles = StyleSheet.create({
   greetingBackground: {
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    marginBottom: 20
+    marginBottom: 20,
   },
 
   greeting: {
@@ -288,14 +281,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 30,
     marginBottom: 20,
-    color: '#666666'
+    color: '#666666',
   },
   questions: {
     fontSize: 15,
     marginLeft: 15,
     marginBottom: 10,
     marginTop: 20,
-    color: '#666666'
+    color: '#666666',
   },
 
   questionsBorder: {
@@ -303,7 +296,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginLeft: 5,
     marginRight: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
 
   switchAndText: {
@@ -313,12 +306,12 @@ const styles = StyleSheet.create({
     // backgroundColor: '#666666',
     display: 'flex',
     justifyContent: 'space-between',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 
   allSwitch: {
     // backgroundColor: 'green',
-    display: 'flex'
+    display: 'flex',
   },
 
   switch: {
@@ -330,7 +323,7 @@ const styles = StyleSheet.create({
     color: '#666666',
     textAlign: 'left',
     // backgroundColor: 'pink',
-    width: 70
+    width: 70,
   },
   button: {
     width: 120,
@@ -341,19 +334,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 10
+    borderRadius: 10,
     // backgroundColor: '#2C3E50',
   },
   buttonText: {
     fontSize: 14,
     textAlign: 'center',
     margin: 10,
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
 
   warningMsg: {
     color: '#ff5050',
     marginTop: 40,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
