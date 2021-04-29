@@ -7,6 +7,7 @@ import toppic3 from '../toppic3.png';
 export const MovieCardStyles = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
+      <View style={styles.box}></View>
       <View style={styles.logo}>
         <Image style={styles.loginLogo} source={bingr1} />
       </View>
@@ -71,13 +72,18 @@ const styles = StyleSheet.create({
 
   logo: {
     backgroundColor: '#f2f2f2',
+    // paddingTop: 30,
     width: '100%',
     height: 65,
     textAlign: 'center',
     justifyContent: 'center',
     fontSize: 20,
   },
-
+ box: {
+  backgroundColor: '#f2f2f2',
+  height: 30,
+  width:'100%',
+ },
   loginLogo: {
     height: '60%',
     width: '20%',
@@ -94,7 +100,7 @@ const styles = StyleSheet.create({
   backgroundContainer: {
     flex: 1,
     position: 'absolute',
-    marginTop: 65,
+    marginTop: 95,
     top: 0,
     left: 0,
     width: '100%',

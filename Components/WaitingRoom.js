@@ -7,6 +7,7 @@ export const WaitingRoom = ({ navigation, route }) => {
   const { roomCode, trackName, isHost } = route.params;
   const [users, setUsers] = useState([]);
 
+
   useEffect(() => {
     const unsub = firebase
       .firestore()
@@ -69,6 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
     margin: 6,
+    marginTop: 50,
     borderRadius: 20,
   },
   code: {

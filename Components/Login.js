@@ -105,13 +105,13 @@ export const Login = ({ navigation }) => {
           </View>
         )}
       </View>
-      {/* <TouchableOpacity
+      <TouchableOpacity
         onPress={() => {
-          navigation.navigate('HostFilter');
+          navigation.navigate('MovieCardStyles');
         }}
         style={styles.button}>
         <Text style={styles.buttonText}>HOST GAME</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       {/* <View style={styles.devs}>
         <Text style={styles.dev}>Deveoloped by:</Text>
         <Text style={styles.dev}>Nate Masters, Jonathan Bennett,</Text>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     marginTop: 75,
-    marginBottom: 75,
+    marginBottom: 25,
     borderRadius: 10,
     height: 1,
     flex: 1,
