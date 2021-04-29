@@ -1,8 +1,6 @@
 import firebase from '../config';
 export const createGameRoom = (code, bigMovieData) => {
-  const newCollection = firebase.firestore().collection(code);
-  bigMovieData.forEach((movie, index) => {
-    const movieId = bigMovieData[index].id;
+  bigMovieData.forEach((movie) => {
     const {
       adult,
       backdrop_path,
@@ -17,10 +15,11 @@ export const createGameRoom = (code, bigMovieData) => {
       title,
       video,
       vote_average,
-      vote_count
-    } = bigMovieData[index];
+      vote_count,
+    } = movie;
 
-    firebase.firestore().collection(code).doc(movieId.toString()).set({
+    firebase.firestore().collection(code).doc(id.toString()).set({
+      voters: [],
       adult,
       backdrop_path,
       genre_ids,
@@ -36,7 +35,7 @@ export const createGameRoom = (code, bigMovieData) => {
       vote_average,
       vote_count,
       increment_votes: 0,
-      tally: 0
+      tally: 0,
     });
   });
 };
