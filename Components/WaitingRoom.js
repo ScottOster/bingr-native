@@ -28,7 +28,9 @@ export const WaitingRoom = ({ navigation, route }) => {
       <View style={styles.backGround}>
         <Text style={styles.code}>{roomCode}</Text>
         <View style={styles.names}>
-          <Text> Joined Players</Text>
+          <View style={styles.joinedPlayers}>
+          <Text style={styles.pText}> Joined Players</Text>
+          </View>
           {users.map((user) => {
             return (
               <Text style={styles.name} key={user}>
@@ -52,7 +54,7 @@ export const WaitingRoom = ({ navigation, route }) => {
             useAngle={true}
             angle={300}
             angleCenter={{ x: 0.5, y: 0.5 }}>
-            <Text style={styles.buttonText}>Get Binging</Text>
+            <Text style={styles.buttonText}>START</Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>
@@ -73,10 +75,24 @@ const styles = StyleSheet.create({
   },
   code: {
     fontSize: 50,
-    color: '#666666',
+    color: 'gray',
     textAlign: 'center',
     marginTop: 80,
-    marginBottom: 50,
+    marginBottom: 10,
+  },
+
+  joinedPlayers: {
+    width: 160,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+    
+  },
+
+  pText: {
+    color: '#666666',
+    marginBottom: 5,
   },
 
   names: {
@@ -87,6 +103,7 @@ const styles = StyleSheet.create({
   name: {
     textAlign: 'center',
     margin: 5,
+    color: '#666666',
   },
 
   text: {

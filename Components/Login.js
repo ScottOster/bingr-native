@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
+    
   },
   loginLogo: {
     height: 130,

@@ -8,12 +8,24 @@ import { MovieCard } from './Components/MovieCard';
 import { WaitingRoom } from './Components/WaitingRoom';
 import { ResultStyles } from './Components/ResultStyles';
 import { Result } from './Components/Result';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+
+// const getFonts = () => {
+//   return Font.loadAsync({
+//     'Pacifico-Regular': require('./assets/fonts/Pacifico-Regular.tff')
+//   })
+// }
 
 export default function App() {
+  // const [fontsLoaded, setFontsLoaded] = useState(false);
   const Stack = createStackNavigator();
 
-  return (
-    <NavigationContainer>
+  // if(fontsLoaded) {
+    
+    
+    return (
+      <NavigationContainer>
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login}></Stack.Screen>
         <Stack.Screen name="HostFilter" component={HostFilter}></Stack.Screen>
@@ -24,6 +36,7 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
+  // }
 }
 
 const styles = StyleSheet.create({

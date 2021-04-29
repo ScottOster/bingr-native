@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, StyleSheet, Button, Switch, View, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, Button, Switch, View, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { codeGenerator } from '../codeGenerator';
 import { initiateMovieList } from '../movieList';
 import { createGameRoom } from '../utils/createGameRoom';
 import { createUserRoom } from '../firebase-api';
+import bingr1 from '../bingr1.png';
 
 export const HostFilter = ({ navigation, route }) => {
   const { trackName, isHost } = route.params;
@@ -78,9 +79,10 @@ export const HostFilter = ({ navigation, route }) => {
     <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.fullBackground}>
       <View style={styles.backGround}>
         <View style={styles.filterBox}>
-          {/* <LinearGradient colors={['#4ac6cd', '#49d695']} style={styles.greetingBackground}> */}
-          <Text style={styles.greeting}>Hi {trackName}</Text>
-          {/* </LinearGradient> */}
+      <View style={styles.logo}>
+        <Image style={styles.loginLogo} source={bingr1} />
+      </View>
+        
           <View style={styles.questionsBorder}>
             <Text style={styles.questions}>What are you watching on?</Text>
           </View>
@@ -206,6 +208,7 @@ export const HostFilter = ({ navigation, route }) => {
             <Text style={styles.warningMsg}>Please select atleast one provider and genre</Text>
           )}
         </View>
+        
       </View>
     </LinearGradient>
   );
@@ -214,6 +217,35 @@ export const HostFilter = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   fullBackground: {
     flex: 1,
+  },
+  logo: {
+    // backgroundColor: '#f2f2f2',
+    width: '100%',
+    height: 100,
+    textAlign: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    // fontSize: 20,
+    // borderBottomLeftRadius: 10,
+    // borderBottomRightRadius: 10,
+    //   borderBottomWidth: 1,
+    //   borderBottomColor: 'gray',
+  },
+
+  loginLogo: {
+
+    height: 100,
+    width: 180,
+    // maxWidth: '30%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    // paddingTop: 10,
+    // paddingBottom: 10,
+    // width: '50%',
+    marginTop: '1%',
+    // marginBottom: '1%',
+    // marginBottom: 50,
+
   },
 
   backGround: {
