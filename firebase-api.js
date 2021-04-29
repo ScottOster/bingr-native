@@ -1,7 +1,6 @@
 import firebase from './config';
 import { sortMoviesByVotes } from './utils/utils';
 
-
 const db = firebase.firestore();
 
 export const getMovie = (roomCode, filmId) => {
@@ -38,18 +37,15 @@ export const getTopFiveMovies = async (roomCode) => {
 const increment = firebase.firestore.FieldValue.increment(1);
 
 export const updateVotesCount = async (roomCode, movieId) => {
-  await db
-    .collection(roomCode)
-    .doc(movieId)
-    .update({ increment_votes: increment});
+  await db.collection(roomCode).doc(movieId).update({ increment_votes: increment });
 };
 
 export const updateVoters = async (roomCode, voterName, movieId) => {
-  console.log(roomCode)
-  console.log(movieId)
-const movieRef = db.collection(String(roomCode)).doc(String(movieId))
-await movieRef.update({voters: firebase.firestore.FieldValue.arrayUnion(voterName)})
-}
+  console.log(roomCode);
+  console.log(movieId);
+  const movieRef = db.collection(String(roomCode)).doc(String(movieId));
+  await movieRef.update({ voters: firebase.firestore.FieldValue.arrayUnion(voterName) });
+};
 
 export const updateVotesTally = async (roomCode, movieId) => {
   await db.collection(roomCode).doc(movieId).update({ tally: increment });
@@ -60,10 +56,7 @@ export const createUserRoom = (roomCode, hostName) => {
 };
 
 export const updateUserProgress = async (roomCode, userName) => {
-  await db
-    .collection(`${roomCode}users`)
-    .doc(userName)
-    .update({ isFinished: true });
+  await db.collection(`${roomCode}users`).doc(userName).update({ isFinished: true });
 };
 
 export const checkUserProgress = async (roomCode) => {
@@ -125,10 +118,9 @@ export const joinRoomErrorChecker = (roomCode, userName) => {
   return Promise.all([
     checkRoomExists(roomCode),
     checkUserExists(roomCode, userName),
-    checkUserProgress(roomCode)
+    checkUserProgress(roomCode),
   ]).then((values) => {
     console.log(values);
     return values;
   });
 };
-

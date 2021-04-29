@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import firebase from '../config';
-import { getTopFiveMovies, getMovie, updateUserProgress, deleteGameRoom, deleteUsersRoom} from '../firebase-api';
+import {
+  getTopFiveMovies,
+  getMovie,
+  updateUserProgress,
+  deleteGameRoom,
+  deleteUsersRoom,
+} from '../firebase-api';
 
 export const Result = ({ navigation, route }) => {
   const { roomCode, trackName, finalFilm, users } = route.params;
@@ -22,7 +28,7 @@ export const Result = ({ navigation, route }) => {
       .onSnapshot((snapshot) => {
         console.log(snapshot.data().tally);
         if (snapshot.data().tally >= users.length) {
-          console.log(snapshot.data().tally)
+          console.log(snapshot.data().tally);
           getTopFiveMovies(roomCode)
             .then((topFiveFilms) => {
               setRunnersUp(topFiveFilms.slice(1, 5));
@@ -34,9 +40,10 @@ export const Result = ({ navigation, route }) => {
             });
         }
       });
-      return () =>{
-        console.log('unsubsribinignign,...')
-        unsub()}
+    return () => {
+      console.log('unsubsribinignign,...');
+      unsub();
+    };
   }, []);
 
   return isLoading ? (

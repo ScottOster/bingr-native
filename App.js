@@ -10,7 +10,7 @@ import { MovieCard } from './Components/MovieCard';
 import { WaitingRoom } from './Components/WaitingRoom';
 import { ResultStyles } from './Components/ResultStyles';
 import { MovieCardStyles } from './Components/MovieCardStyles';
-import {DetailedResults} from './Components/DetailedResults'
+import { DetailedResults } from './Components/DetailedResults';
 import { Result } from './Components/Result';
 
 // const getFonts = () => {
