@@ -21,6 +21,7 @@ export const createGameRoom = (code, bigMovieData) => {
     } = bigMovieData[index];
 
     firebase.firestore().collection(code).doc(movieId.toString()).set({
+      voters: [],
       adult,
       backdrop_path,
       genre_ids,

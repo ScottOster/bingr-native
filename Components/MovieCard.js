@@ -5,7 +5,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import {
   updateVotesTally,
   getMovieByPosition,
-  updateVotesCount
+  updateVotesCount,
+  updateVoters
 } from '../firebase-api';
 
 export const MovieCard = ({ navigation, route }) => {
@@ -79,8 +80,8 @@ export const MovieCard = ({ navigation, route }) => {
                     setDisabledBtn(false);
                     console.dir(error);
                   });
-              }}
-            >
+                }}
+                >
               <LinearGradient
                 start={{ x: 0.0, y: 0.0 }}
                 end={{ x: 0.0, y: 0.0 }}
@@ -90,7 +91,7 @@ export const MovieCard = ({ navigation, route }) => {
                 useAngle={true}
                 angle={300}
                 angleCenter={{ x: 0.5, y: 0.5 }}
-              >
+                >
                 <Text style={styles.buttonText}>Cringr</Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -101,11 +102,12 @@ export const MovieCard = ({ navigation, route }) => {
               onPress={() => {
                 setDisabledBtn(true);
                 updateVotesTally(roomCode, String(id))
-                  .then(() => {
-                    updateVotesCount(roomCode, String(id)).then(() => {
-                      incrementCounter();
-                    });
-                  })
+                .then(() => {
+                  updateVoters(roomCode, 'scott', currentFilm.id)
+                  updateVotesCount(roomCode, String(id)).then(() => {
+                    incrementCounter();
+                  });
+                })
                   .catch((error) => {
                     setDisabledBtn(false);
                     console.dir(error);

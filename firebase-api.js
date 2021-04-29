@@ -1,6 +1,7 @@
 import firebase from './config';
 import { sortMoviesByVotes } from './utils/utils';
 
+
 const db = firebase.firestore();
 
 export const getMovie = (roomCode, filmId) => {
@@ -40,8 +41,15 @@ export const updateVotesCount = async (roomCode, movieId) => {
   await db
     .collection(roomCode)
     .doc(movieId)
-    .update({ increment_votes: increment });
+    .update({ increment_votes: increment});
 };
+
+export const updateVoters = async (roomCode, voterName, movieId) => {
+  console.log(roomCode)
+  console.log(movieId)
+const movieRef = db.collection(String(roomCode)).doc(String(movieId))
+await movieRef.update({voters: firebase.firestore.FieldValue.arrayUnion(voterName)})
+}
 
 export const updateVotesTally = async (roomCode, movieId) => {
   await db.collection(roomCode).doc(movieId).update({ tally: increment });
@@ -123,3 +131,4 @@ export const joinRoomErrorChecker = (roomCode, userName) => {
     return values;
   });
 };
+

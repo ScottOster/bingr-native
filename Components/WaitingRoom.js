@@ -7,8 +7,10 @@ export const WaitingRoom = ({ navigation, route }) => {
   const { roomCode, trackName, isHost } = route.params;
   const [users, setUsers] = useState([]);
 
+
+
   useEffect(() => {
-    const unsub = firebase
+      unsub = firebase
       .firestore()
       .collection(`${roomCode}users`)
       .onSnapshot((snapshot) => {
@@ -19,6 +21,9 @@ export const WaitingRoom = ({ navigation, route }) => {
         });
         setUsers(usersOnFb);
       });
+      return () =>{
+        console.log('unsubsribinignign,...')
+        unsub()}
   }, []);
 
   return (
