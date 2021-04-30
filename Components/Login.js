@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, StyleSheet, View, Text, Image, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import logo from '../logo.png';
+import logo from '../bingrSize1.png';
 import { addUserToRoom, joinRoomErrorChecker } from '../firebase-api';
 
 export const Login = ({ navigation }) => {
@@ -58,7 +58,7 @@ export const Login = ({ navigation }) => {
             placeholder={'Enter 4 digit room code'}
             placeholderTextColor={'gray'}></TextInput>
           <TouchableOpacity
-            disabled={userRoomCode.length < 4}
+            disabled={userRoomCode.length < 4 || trackName.length < 2}
             onPress={() => {
               const capitalizedRoomCode = userRoomCode.toUpperCase();
               joinRoomErrorChecker(capitalizedRoomCode, trackName).then((res) => {
@@ -127,14 +127,14 @@ const styles = StyleSheet.create({
   },
   loginLogo: {
     height: 130,
-    width: 130,
+    width: 200,
     // maxWidth: '30%',
     marginLeft: 'auto',
     marginRight: 'auto',
     paddingTop: 10,
     paddingBottom: 10,
     // width: '50%',
-    marginTop: 35,
+    marginTop: 20,
     marginBottom: 50,
   },
   login: {

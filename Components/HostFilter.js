@@ -88,7 +88,7 @@ export const HostFilter = ({ navigation, route }) => {
           </View>
           <View style={styles.allSwitch}>
             <View style={styles.switchAndText}>
-              <Text style={styles.text}>Netlix</Text>
+              <Text style={styles.text}>Netflix</Text>
               <Switch
                 style={styles.switch}
                 className="setProviders"

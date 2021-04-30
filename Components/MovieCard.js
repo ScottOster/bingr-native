@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 import { updateVotesTally, getMovieByPosition, updateVotesCount } from '../firebase-api';
-import bingr1 from '../bingr1.png';
+import bingr1 from '../bingrSize1.png';
 
 export const MovieCard = ({ navigation, route }) => {
   const { roomCode, trackName, users } = route.params;
@@ -57,7 +57,7 @@ export const MovieCard = ({ navigation, route }) => {
         />
       </View>
       <LinearGradient
-        colors={['transparent', 'transparent', 'transparent']}
+        colors={['transparent', 'transparent', 'transparent', '#000000', '#000000']}
         style={styles.fullBackground}>
         <View style={styles.info}>
           <View style={styles.infoBackground}>
@@ -182,9 +182,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
-  infoBackground: {
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-  },
+  // infoBackground: {
+  //   backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  // },
   title: {
     color: '#f2f2f2',
     fontSize: 25,
