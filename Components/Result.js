@@ -3,8 +3,8 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import firebase from '../config';
 import { getTopFiveMovies, getMovie, updateUserProgress } from '../firebase-api';
-import bingr1 from '../bingr1.png';
-import toppic3 from '../toppic3.png';
+import bingr1 from '../bingrSize1.png';
+import toppic3 from '../topPicSize1.png';
 
 export const Result = ({ navigation, route }) => {
   const { roomCode, trackName, finalFilm, users } = route.params;
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
     margin: 6,
+    borderRadius: 15,
   },
 
   backgroundContainer: {
