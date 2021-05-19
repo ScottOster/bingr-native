@@ -39,7 +39,7 @@ At present, this app will not work if cloned and tried locally, as the core func
 - JavaScript
 - React Native (using Expo)
 - Firebase Cloud Firestore
-- Real-time communications using Firebase's in-built web socket functionality
+- Real-time data updates using Firebase's in-built web socket functionality
 - TheMovieDatabase API
 
 ### Planning
